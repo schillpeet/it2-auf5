@@ -7,9 +7,11 @@ Erstellen eines Dashboards und Verarbeitung von Server-Daten zum Tracking von Te
 **Tracking Schmiermittelverbrauch – Temperatur (Qualität/Leck)**
 - Visualisierung der Temperatur und des Temperaturverlaufs der Wellenkupplung inklusive Toleranz- und Schadensgrenze
 - Faktenbasierte, datengetriebene Ableitung von Qualitätsgegebenheiten und Fehlerzuständen
+
 **Tracking Kugellagerlauf – Vibration und Akustik (Verschleiß/Bruch)**
 - Visualisierung der Bewegung der Wellen und der von dieser ausgehenden Akustik sowie der Wertverläufe inklusive Toleranz- und Schadensgrenze
 - Faktenbasierte, datengetriebene Ableitung von Verschleiß und Fehlerzuständen
+
 **Tracking Anlageninnenleben – Vibration und Akustik (gelöste/vergessenen Teile)**
 - Visualisierung der Bewegung der Welle und der von dieser ausgehenden Akustik sowie der Wertverläufe
 - Faktenbasierte, datengetriebene Ableitung von Fehlerzuständen
