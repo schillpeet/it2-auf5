@@ -17,4 +17,4 @@ Erstellen eines Dashboards und Verarbeitung von Server-Daten zum Tracking von Te
 - Faktenbasierte, datengetriebene Ableitung von Fehlerzuständen
 
 # Wichtig:
-Bei diesen Funktionalitäten handelt es sich um die **Minimalanforderungen**. Sie sind dazu eingeladen, weitere Funktionen, basierend auf den zur Verfügung gestellten Daten, zu entwerfen und diese mit uns zu diskutieren. Auch können weitere Daten auf dem Server zur Verfügung gestellt werden, wenn Sie diese für bestimmte Funktionalitäten benötigen.
+Bei diesen Funktionalitäten handelt es sich um die **Minimalanforderungen**. Sie sind dazu eingeladen, **_weitere Funktionen_**, basierend auf den zur Verfügung gestellten Daten, zu entwerfen und diese mit uns zu diskutieren. Auch können weitere Daten auf dem Server zur Verfügung gestellt werden, wenn Sie diese für bestimmte Funktionalitäten benötigen.
