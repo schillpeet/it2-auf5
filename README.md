@@ -31,5 +31,15 @@ Erstellen eines Dashboards und Verarbeitung von Server-Daten zum Tracking von Te
 - Visualisierung der Bewegung der Welle und der von dieser ausgehenden Akustik sowie der Wertverläufe
 - Faktenbasierte, datengetriebene Ableitung von Fehlerzuständen
 
+## Nötige Entpunkte und relevante Daten
+- http://it2wi1.if-lab.de/rest/mpr_fall1> (Optimale Qualität)
+- <http://it2wi1.if-lab.de/rest/mpr_fall2> (Mindere Qualität)
+- <http://it2wi1.if-lab.de/rest/mpr_fall3> (Defekt)
+- <http://it2wi1.if-lab.de/rest/mpr_fall4> (Lose Teile)
+- Toleranzgrenze_temp: 75; Schadensgrenze_temp: 150
+- Toleranzgrenze_laut: 80; Schadengrenze_laut: 117
+- Toleranzgrenze_vibr: 0,15; Schadengrenze_vibr: 0,4
+- Fall 4: Indiz für loses Teil (Abweichung letzte 5 Sec. >): Temp: 6, Vibr: 0,02
+
 ## Wichtig:
 Bei diesen Funktionalitäten handelt es sich um die **Minimalanforderungen**. Sie sind dazu eingeladen, **_weitere Funktionen_**, basierend auf den zur Verfügung gestellten Daten, zu entwerfen und diese mit uns zu diskutieren. Auch können weitere Daten auf dem Server zur Verfügung gestellt werden, wenn Sie diese für bestimmte Funktionalitäten benötigen.
