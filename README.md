@@ -2,9 +2,8 @@
 Erstellen eines Dashboards und Verarbeitung von Server-Daten zum Tracking von Temperatur, Vibration und Akustik.
 
 # Generelle Anforderungen
-(s.a. VL1 S.40)
-**Visualisierung**
-- Die **Funktionalität** muss für alle in der Aufgabenbeschreibung genannten Anforderungen gegeben sein (s.u. "Aufgabenbeschreibung")
+**Visualisierung** (s.a. VL1 S.40)
+- Die **--Funktionalität--** muss für alle in der Aufgabenbeschreibung genannten Anforderungen gegeben sein (s.u. "**_Aufgabenbeschreibung_**")
 - Die **Ergonomie** muss auf die Verwendung auf einem **_Tablet mit Touch-Funktionalität_** ausgerichtet sein
 - Die **Ästhetik / das Layout** des Programms muss sich an der Corporate Identity des **_PID4CPS Ressourcen Cockpit_** (s.a.VL1 S.37) orientieren
   - Schriftart:
