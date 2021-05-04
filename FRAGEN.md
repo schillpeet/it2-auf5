@@ -18,3 +18,7 @@ Situation: dies ist der Elektromotorenprüfstand, an dem Temperatur, Akustik und
 ## Startseite
 Situation: im Video zu Ressourcen Cockpit sieht man im action bar lediglich "PID4CPS" oben links stehen und Sprachauswahlen oben rechts. In der Mitte stehen drei Tabs "Maschinen- und Anlagenführung", "Instandhaltung" und "Management".
 - weder die Ampel noch "warning", "timer", "escalation" sind zu sehen. Sollen wir dies auch so handhaben und erst durch Klick auf einen dieser Anfang-Buttons diese Symbole erscheinen lassen? Im Video wird es auf jeden Fall so gehandhabt?
+
+## Allgemeine Fragen
+- welche Funktionen sollen "Timer" und "Eskalation" haben?
+- sollen wir auch ein Wiki oder einen Handlungsleitfaden (s.erste Frage "Fehlerbehandlung") einrichten? Und welche weiteren Tabs/Seiten könnten relevant sein?
