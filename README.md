@@ -41,5 +41,11 @@ Erstellen eines Dashboards und Verarbeitung von Server-Daten zum Tracking von Te
 - Toleranzgrenze_vibr: 0,15; Schadengrenze_vibr: 0,4
 - Fall 4: Indiz für loses Teil (Abweichung letzte 5 Sec. >): Temp: 6, Vibr: 0,02
 
+## Kontext der Aufgabenstellung
+- Dashboard-Entwicklung:
+  - Visualisierung von Live-Daten
+  - Kontextualisierung (also in Bezug zu dem ganzen setzen)
+  - Ableiten von Kausalitäten und Schlüssen (**ggf. Fehlermeldungen anzeigen oder direkt auf die Maschinen reagieren?**)
+
 ## Wichtig:
 Bei diesen Funktionalitäten handelt es sich um die **Minimalanforderungen**. Sie sind dazu eingeladen, **_weitere Funktionen_**, basierend auf den zur Verfügung gestellten Daten, zu entwerfen und diese mit uns zu diskutieren. Auch können weitere Daten auf dem Server zur Verfügung gestellt werden, wenn Sie diese für bestimmte Funktionalitäten benötigen.
