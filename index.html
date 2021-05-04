@@ -2,6 +2,8 @@
 <!-- TO DO:
         -Verwendung für eine Tablet mit Touch-Funktionalität einbauen
         -Rand links / rechts / oben des Action bar muss noch entfernt werden => bündig soll es ja sein
+        -die Zahl über dem Warnsymbol muss noch erstellt werden
+        -die Ampel fehlt auch noch!
 -->
 <html>
   <head>
@@ -9,13 +11,16 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <!-- oberer Teil der Seite: beinhaltet actionbar, escalation- & timer-button -->
+    <!-- oberer Teil der Seite: beinhaltet actionbar, escalation- & timer-button und Warnsymbol -->
     <div id="top">
         <div id="actionbar">
             <p>Welche Funktionalitäten erfüllt diese Action bar? Ggf. Seiten rückwärts / vorwärts springen?</p>
-        </div>
+        </div>       
         <a class="escalation-button">Eskalation</a>
         <a class="timer-button">Timer</a>
+        <div id="image">
+            <img src="warning.png" alt="Warning Bild">
+        </div>
     </div>
     <!-- unterer Teil der Seite: wird dann die Icons / Links zu den Funktionalitäten aufweisen -->
     <div id="body">
