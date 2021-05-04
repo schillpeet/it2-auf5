@@ -1,9 +1,25 @@
 # it2-auf5
 Erstellen eines Dashboards und Verarbeitung von Server-Daten zum Tracking von Temperatur, Vibration und Akustik.
 
+# Generelle Anforderungen
+(s.a. VL1 S.40)
+** Visualisierung **
+- Die **Funktionalität** muss für alle in der Aufgabenbeschreibung genannten Anforderungen gegeben sein (s.u. "Aufgabenbeschreibung")
+- Die **Ergonomie** muss auf die Verwendung auf einem **__Tablet mit Touch-Funktionalität__** ausgerichtet sein
+- Die **Ästhetik / das Layout** des Programms muss sich an der Corporate Identity des **__PID4CPS Ressourcen Cockpit__** (s.a.VL1 S.37) orientieren
+  - Schriftart_
+    - Roboto
+  - Farbcodes:
+    - Farbe Hintergrund: 717e87
+    - Farbe Action bar: 314151
+    - Farbe Timer: 217446
+    - Farbe Eskalation: d24525
+  - Icons:
+    - <https://www.flaticon.com/authors/vectors-market>
+
 # Thema: Aufgabe 5: Elektromotorenprüfstand 1: Condition Monitoring / Zuordnung von Fehlern
 
-# Funktionalitäten des Programms:
+# (_AUFGABENBESCHREIBUNG_) Funktionalitäten des Programms:
 **Tracking Schmiermittelverbrauch – Temperatur (Qualität/Leck)**
 - Visualisierung der Temperatur und des Temperaturverlaufs der Wellenkupplung inklusive Toleranz- und Schadensgrenze
 - Faktenbasierte, datengetriebene Ableitung von Qualitätsgegebenheiten und Fehlerzuständen
