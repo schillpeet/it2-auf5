@@ -13,7 +13,7 @@ Situation: im Ressourcen Cockpit ist oben links unter dem action bar eine Ampelf
 
 ## Sensor-Aktor-Modul
 Situation: dies ist der Elektromotorenprüfstand, an dem Temperatur, Akustik und Vibration aufgenommen wird
-- sollen wir uns konkret an die jeweiligen Tabs aus dem Ressourcen Cockpit halten oder eigene bzgl Temperatur etc erstellen?
+- sollen wir uns konkret an die jeweiligen Tabs aus dem Ressourcen Cockpit halten oder eigene bzgl Temperatur etc erstellen? Ggf einen eigenen auf dem Temperatur, Akustik, Vibration alles in einem Graphen + rpm zu sehen ist.
 
 ## Startseite
 Situation: im Video zu Ressourcen Cockpit sieht man im action bar lediglich "PID4CPS" oben links stehen und Sprachauswahlen oben rechts. In der Mitte stehen drei Tabs "Maschinen- und Anlagenführung", "Instandhaltung" und "Management".
