@@ -32,7 +32,7 @@ Erstellen eines Dashboards und Verarbeitung von Server-Daten zum Tracking von Te
 - Faktenbasierte, datengetriebene Ableitung von Fehlerzuständen
 
 ## Nötige Entpunkte und relevante Daten
-- http://it2wi1.if-lab.de/rest/mpr_fall1> (Optimale Qualität)
+- <http://it2wi1.if-lab.de/rest/mpr_fall1> (Optimale Qualität)
 - <http://it2wi1.if-lab.de/rest/mpr_fall2> (Mindere Qualität)
 - <http://it2wi1.if-lab.de/rest/mpr_fall3> (Defekt)
 - <http://it2wi1.if-lab.de/rest/mpr_fall4> (Lose Teile)
