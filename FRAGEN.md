@@ -19,5 +19,7 @@ Situation: dies ist der Elektromotorenprüfstand, an dem Temperatur, Akustik und
 ## Prozessschritte
 - wird es bei uns irgendwelche Prozessschritte geben, durch die der Nutzer bei etwaigen Fehlern durchgeleitet wird?
 - z.B. Ampel oder Warnsignal leuchtet auf und der Nutzer wird aufgefordert eine bewusste Entscheidung zu treffen, wenn z.B. die Daten am Limit sind(?)
+  - **Beispiel: Temperatur ist zu hoch => Schmiermittelverbrauch überprüfen!! oder der Hinweis "mangelnde Qualität oder Leck"**
+  - **Beispiel: Akustik und Vibration => möglicher Verschleiß oder Bruch oder gelöste oder vergessene Teile**
 
 ## Welche weiteren Funktionen wollen wir in der App mit integrieren?
