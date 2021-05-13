@@ -23,3 +23,4 @@ Situation: dies ist der Elektromotorenprüfstand, an dem Temperatur, Akustik und
   - **Beispiel: Akustik und Vibration => möglicher Verschleiß oder Bruch oder gelöste oder vergessene Teile**
 
 ## Welche weiteren Funktionen wollen wir in der App mit integrieren?
+- Verlaufsdiagramm
