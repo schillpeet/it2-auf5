@@ -1,24 +1,23 @@
 ## Fehlerbehandlung
 Szenario: es liegt ein Fehler vor oder eine Warnung
-- sollen wir dann durch klicken auf den Fehlerbehandlungsbutton auf eine neue Seite "Handlungsleitfaden" weitergeleitet werden? (**=Anleitung zur Problembehandlung**) -> muss nicht, wir sind hier relativ frei wie wir das handeln wollen
+- sollen wir dann durch klicken auf den Fehlerbehandlungsbutton auf eine neue Seite "Handlungsleitfaden" weitergeleitet werden? (**=Anleitung zur Problembehandlung**)
+#### Anwort:  -> muss nicht, wir sind hier relativ frei wie wir das handeln wollen
 - im Video "IT2_SS2021_Vorlesung1_15_04_2021_Video\ PID4CPS.mp4" wird gezeigt, dass bei keinem Eintrag die Möglichkeit besteht, selbst einen Eintrag zu erstellen:
-  - hierbei gibt man einen Titel ein, kann ein Photo aufnehmen / auswählen und Stück für Stück einen neuen Eintrag erstellen (-> brauchen wir so direkt nicht machen, es geht mehr darum, dass wir Funktionen wie "wie oft tritt der Fehler auf?" machen
-
-## Systemstatus
-Situation: im Ressourcen Cockpit ist oben links unter dem action bar eine Ampelfläche gezeigt, die bei Fehlern im entsprechenden Licht leuchtet.
-- dies wird wsl auch mit integriert werden müssen oder? -> muss nicht, nein, können wir aber nutzen
-- wenn das rote Ampellicht angezeigt wird, soll man durch klicken auf das "Warnsymbol" auf "Handlungsleitfaden" weitergeleitet werden
-  - hier wird man dann Schritt für Schritt durchgeleitet und bestätigt mit "weiter"
-  - am Ende, wenn man alle Schritte durchgegangen ist, erscheint ein weiteres Fenster, das bestätigt, dass jetzt alles wieder in Ordnung ist
+  - hierbei gibt man einen Titel ein, kann ein Photo aufnehmen / auswählen und Stück für Stück einen neuen Eintrag erstellen 
+#### Anwort: (-> brauchen wir so direkt nicht machen, es geht mehr darum, dass wir Funktionen wie "wie oft tritt der Fehler auf?" machen
 
 ## Sensor-Aktor-Modul
 Situation: dies ist der Elektromotorenprüfstand, an dem Temperatur, Akustik und Vibration aufgenommen wird
-- sollen wir uns konkret an die jeweiligen Tabs aus dem Ressourcen Cockpit halten oder eigene bzgl Temperatur etc erstellen? Ggf einen eigenen auf dem Temperatur, Akustik, Vibration alles in einem Graphen + rpm zu sehen ist.
+- Temperatur, Akustik, Vibration alles in einem Graphen + rpm soll alles auf einem Graphen zu sehen sein.
 
 ## Startseite
-Situation: im Video zu Ressourcen Cockpit sieht man im action bar lediglich "PID4CPS" oben links stehen und Sprachauswahlen oben rechts. In der Mitte stehen drei Tabs "Maschinen- und Anlagenführung", "Instandhaltung" und "Management".
-- weder die Ampel noch "warning", "timer", "escalation" sind zu sehen. Sollen wir dies auch so handhaben und erst durch Klick auf einen dieser Anfang-Buttons diese Symbole erscheinen lassen? Im Video wird es auf jeden Fall so gehandhabt?
+- Soll die Ampel sowie "warning", "timer", "escalation" bei uns noch eine bestimmte Funktion bekommen und wenn ja, welche?.
+  - vllt die Ampel und das Warnsymbol! (wir müssen sie aber nicht verwenden, wenn wir nicht wollen)
+  - wir müssen auch keine Handlungsleitfäden angeben **(?)**, auf jeden Fall keine Wikis!
+  - was gute wäre, wenn wir vllt auf einen Fehler hinweisen und **ggf. weitere Hinweise oder Tipps o.Ä. mitgeben**
 
-## Allgemeine Fragen
-- welche Funktionen sollen "Timer" und "Eskalation" haben? müssen wir nicht nutzen
-- sollen wir auch ein Wiki oder einen Handlungsleitfaden (s.erste Frage "Fehlerbehandlung") einrichten? Und welche weiteren Tabs/Seiten könnten relevant sein? nein
+## Prozessschritte
+- wird es bei uns irgendwelche Prozessschritte geben, durch die der Nutzer bei etwaigen Fehlern durchgeleitet wird?
+- z.B. Ampel oder Warnsignal leuchtet auf und der Nutzer wird aufgefordert eine bewusste Entscheidung zu treffen, wenn z.B. die Daten am Limit sind(?)
+
+## Welche weiteren Funktionen wollen wir in der App mit integrieren?
