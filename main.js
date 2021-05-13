@@ -20,7 +20,7 @@ function zeigeDaten(daten) {
     //Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
     p.enter().append("p")
     .text(function (daten) {
-        return "Uhrzeit: " + daten.datum + " Rpm:: " + daten.werte["Rpm"]   // gebe die Werte rpm zurück
+        return "Uhrzeit: " + daten.datum + " Rpm: " + daten.werte["Rpm"]   // gebe die Werte rpm zurück
         + " Temperatur: " + daten.werte["Tavg_temp"]
         + " Lautstärke: " + daten.werte["Tavg_laut"]
         + " Vibration: " + daten.werte["Tavg_vibr"]
