@@ -11,6 +11,8 @@ function empfangeDaten(datenEmpfangen, error) {
         console.log(error);
     } else {
         zeigeDaten(datenEmpfangen);
+        // eigene Spielerei zum Verständnis:
+        frageDaten(datenEmpfangen);
     }
 }
 function zeigeDaten(daten) {
@@ -29,6 +31,11 @@ function zeigeDaten(daten) {
     // Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
     p.exit().remove();
 }
+// Spielereien:
+function frageDaten(datenEmpfangen) {
+    
+}
+
 /*
 d3.json("http://it2w1.if-lab.de/rest/beispiel/Parameter/Person%20B/tag/1").then(function(data, error) {
     empfangen(data, error)
@@ -47,29 +54,4 @@ Promise.all(promises)
 // 3. Daten in Form bringen
 // 4. Daten darstellen
 
-// FOLGENDER TEIL DIENT NUR ZUM VERSTÄNDNIS - kann ignoriert werden:
-/*function aktualisiere() {
-    //Daten empfangen
-    d3.json("http://it2wi1.if-lab.de/rest/beispiel/Parameter/Person%20B/tag/1").then(function (data, error) {
-        empfangeDaten(data, error)
-    });
-}
-function empfangeDaten(datenEmpfangen, error) {
-    if (error) {
-        console.log(error);
-    } else {
-        zeigeDaten(datenEmpfangen);
-    }
-}
-function zeigeDaten(daten) {
-    //Elemente mit id „content“ sammeln und in Variable p speichern
-    let p = d3.select("#content").selectAll("p").data(daten);
 
-    //Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
-    p.enter().append("p")
-    .text(function (daten) {
-        return "Uhrzeit: " + daten.datum + " Wert: " + daten.werte["Person B"];
-    });
-    // Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
-    p.exit().remove();
-}*/
