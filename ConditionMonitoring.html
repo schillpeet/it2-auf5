@@ -10,7 +10,8 @@
         <div id="top">
             <div id="actionbar">
                 <p>HOME/Conditional_Monitoring</p> <!-- stellt den aktuellen Pfad da: kann man auch noch schöner gestalten -->
-                <a href="javascript:history.back()">Pfeil zurück</a> <!-- den Pfeil^^ kann man noch eleganter gestalten -->
+                <!-- den Pfeil^^ kann man noch eleganter gestalten -->
+                <a href="javascript:history.back()"> <img src="previous.png" alt="pfeil" style="width:30px;height:50px"></a> 
             </div>
             <div class="diagrammbutton">
                 <a class="Liniendiagramm">Liniendiagramm</a>
@@ -22,6 +23,17 @@
             </div>
             <button onclick="aktualisiere()">aktualisiere</button>
         </div>
-       
-    </body>
+        <div class="diagrammbutton">
+            <a class="Liniendiagramm">Liniendiagramm</a>
+            <a class="Balkendiagramm">Balkendiagramm</a>
+            <a class="Kuchendiagramm">Kuchendiagramm</a>
+        </div>
+        <div id="content">
+            (=Optimale Qualität)
+        </div>
+        <button onclick="aktualisiere()">aktualisiere</button>
+    </div>
+
+</body>
+
 </html>
