@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Visualisierung des Graphen</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="main.js"></script>
-        <script src="https://d3js.org/d3.v5.min.js"></script>   <!-- ist nur ein Beispiel (s.VL2,S61) -->
-    </head>
-    <body>
-        <div id="top">
-            <div id="actionbar">
-                <p>HOME/Conditional_Monitoring</p> <!-- stellt den aktuellen Pfad da: kann man auch noch schöner gestalten -->
-                <a href="javascript:history.back()">Pfeil zurück</a> <!-- den Pfeil^^ kann man noch eleganter gestalten -->
-            </div>
-            <div class="diagrammbutton">
-                <a class="Liniendiagramm">Liniendiagramm</a>
-                <a class="Balkendiagramm">Balkendiagramm</a>
-                <a class="Kuchendiagramm">Kuchendiagramm</a>
-            </div>
-            <div id="content">
-                (=Optimale Qualität)
-            </div>
-            <button onclick="aktualisiere()">aktualisiere</button>
+
+<head>
+    <title>Visualisierung des Graphen</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script> <!-- ist nur ein Beispiel (s.VL2,S61) -->
+</head>
+
+<body>
+    <div id="top">
+        <div id="actionbar">
+            <p>HOME/Conditional_Monitoring</p>
+            <!-- stellt den aktuellen Pfad da: kann man auch noch schöner gestalten -->
+            <a href="javascript:history.back()"> <img src="previous.png" alt="pfeil" style="width:30px;height:50px"></a>
+            <!-- den Pfeil^^ kann man noch eleganter gestalten -->
+
         </div>
-       
-    </body>
+        <div class="diagrammbutton">
+            <a class="Liniendiagramm">Liniendiagramm</a>
+            <a class="Balkendiagramm">Balkendiagramm</a>
+            <a class="Kuchendiagramm">Kuchendiagramm</a>
+        </div>
+        <div id="content">
+            (=Optimale Qualität)
+        </div>
+        <button onclick="aktualisiere()">aktualisiere</button>
+    </div>
+
+</body>
+
 </html>
