@@ -24,3 +24,5 @@ Situation: dies ist der Elektromotorenprüfstand, an dem Temperatur, Akustik und
 
 ## Welche weiteren Funktionen wollen wir in der App mit integrieren?
 - Verlaufsdiagramm
+
+## Dürfen wir Chart.JS benutzen?
