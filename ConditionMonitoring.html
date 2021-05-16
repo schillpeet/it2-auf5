@@ -5,35 +5,46 @@
         <link rel="stylesheet" href="style.css">
         <script src="main.js"></script>
         <script src="https://d3js.org/d3.v5.min.js"></script>   <!-- ist nur ein Beispiel (s.VL2,S61) -->
-    </head>
+    <style>
+        p {
+          display : inline ;
+		  
+      }
+    </style>
+	</head>
     <body>
         <div id="top">
             <div id="actionbar">
-                <p>HOME/Conditional_Monitoring</p> <!-- stellt den aktuellen Pfad da: kann man auch noch schöner gestalten -->
-                <!-- den Pfeil^^ kann man noch eleganter gestalten -->
-                <a href="javascript:history.back()"> <img src="previous.png" alt="pfeil" style="width:30px;height:50px"></a> 
+			    <!-- changed the name of actionbar -->
+	            <a href="javascript:history.back()"> <img src="arrow.png" alt="pfeil" style="width:50px;height:30px;vertical-align :middle; "></a> 
+                <p >Condition Monotoring</p>  
+              
+               
+               
             </div>
-            <div class="diagrammbutton">
-                <a class="Liniendiagramm">Liniendiagramm</a>
-                <a class="Balkendiagramm">Balkendiagramm</a>
-                <a class="Kuchendiagramm">Kuchendiagramm</a>
+            <div ="diagrammbutton">
+                <button class="Temperatur">Temperatur 
+				<!-- Adding icon in buttons -->
+				<div id="Temperatur">
+		        <img src="Temperatur.png"/>
+				</button>
+				
+                <button class="Akkustik">Akkustik
+				<div id="Akkustik">
+		        <img src="akkustik.png"/>
+				</button>
+				
+                <button class="Vibration">Vibration
+				<div id="Temperatur">
+		        <img src="vibration.png"/>
+				</button>
             </div>
             <div id="content">
                 (=Optimale Qualität)
             </div>
             <button onclick="aktualisiere()">aktualisiere</button>
         </div>
-        <div class="diagrammbutton">
-            <a class="Liniendiagramm">Liniendiagramm</a>
-            <a class="Balkendiagramm">Balkendiagramm</a>
-            <a class="Kuchendiagramm">Kuchendiagramm</a>
-        </div>
-        <div id="content">
-            (=Optimale Qualität)
-        </div>
-        <button onclick="aktualisiere()">aktualisiere</button>
-    </div>
 
 </body>
 
-</html>
+</html> 
