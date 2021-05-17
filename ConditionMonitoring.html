@@ -3,9 +3,10 @@
     <head>
         <title>Visualisierung des Graphen</title>
         <link rel="stylesheet" href="style.css">
+        <!-- wichtig: diese Quelle muss als erstes stehen, also vor main.js!!! -->
+        <script src="https://d3js.org/d3.v5.min.js"></script>   
         <script src="main.js"></script>
-        <script src="https://d3js.org/d3.v5.min.js"></script>   <!-- ist nur ein Beispiel (s.VL2,S61) -->
-    
+      
     <!-- set the arrow and the text in line -->    
     <style>
         p {
@@ -20,8 +21,14 @@
 	            <!-- changed the name of actionbar -->
 	            <a href="javascript:history.back()"> <img src="arrow.png" alt="pfeil" style="width:50px;height:30px;vertical-align :middle; "></a> 
                 <p >Condition Monotoring</p>  
-             
             </div>
+            <div id="content">(=Optimale Qualität)</div>
+            <svg id="chart" viewBox="0 0 500 300" style="width:600px; max-width:100%; background-color: white">
+                <rect x="10" y="10" height="10" width="100" fill="#ff6600"/> <!-- das hier muss man noch skalieren!!! -->
+                <rect x="120" y="10" height="10" width="100" fill="blue"/>
+                <rect x="230" y="10" height="10" width="100" fill="yellow"/>
+                <rect x="340" y="10" height="10" width="100" fill="red"/>
+            </svg>
             <div ="diagrammbutton">
                 <button class="Temperatur">Temperatur 
 		<!-- Adding icon in buttons -->
@@ -49,3 +56,4 @@
 </body>
 
 </html> 
+
