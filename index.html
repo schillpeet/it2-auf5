@@ -1,30 +1,19 @@
 <!DOCTYPE html>
-<!-- TO DO:
-        -Verwendung für eine Tablet mit Touch-Funktionalität einbauen
-        -Rand links / rechts / oben des Action bar muss noch entfernt werden => bündig soll es ja sein
-        -die Zahl über dem Warnsymbol muss noch erstellt werden
-        -die Ampel fehlt auch noch!
--->
 <html>
-  <head>
-    <!-- link to css-file -->
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <!-- oberer Teil der Seite: beinhaltet actionbar, escalation- & timer-button und Warnsymbol -->
-    <div id="top">
-        <div id="actionbar">
-            <p>PID4CPS - HOME</p>
-        </div>       
-        <a class="escalation-button">Eskalation</a>
-        <a class="timer-button">Timer</a>
-        <div id="image">
-            <img src="warning.png" alt="Warning Bild">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- oberer Teil enthält actionbar, escalation- & timer-button und Warnsymbol -->
+        <div id="top">
+            <div id="actionbar"><p>PID4CPS - HOME</p></div>
+            <a class="escalation-button">Eskalation</a>
+            <a class="timer-button">Timer</a>
+            <div id="image"><img src="warning.png" alt="Warning Bild"></div>
         </div>
-    </div>
-    <!-- unterer Teil der Seite: wird dann die Icons / Links zu den Funktionalitäten aufweisen -->
-    <div id="body">
-        <a href="ConditionMonitoring.html" class="cMonitoring-button">Condition Monitoring</a>
-    </div>
-  </body>
+        <!-- unterer Teil enthält Button als Link zu den Charts -->
+        <div id="body">
+            <a href="ConditionMonitoring.html" class="cMonitoring-button">Condition Monitoring</a>
+        </div>
+    </body>
 </html>
