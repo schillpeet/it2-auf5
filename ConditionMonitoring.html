@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Visualisierung des Graphen</title>
         <link rel="stylesheet" href="style.css">
+        
         <!-- wichtig: diese Quelle muss als erstes stehen, also vor main.js!!! -->
         <script src="https://d3js.org/d3.v5.min.js"></script>   
-        <script src="main.js"></script>
-      
-    <!-- set the arrow and the text in line -->    
-    <style>
-        p {
-          display : inline ;
-		   }
-    </style>
+        
+        <!-- set the arrow and the text in line -->    
+        <style>
+            p {
+                display : inline ;
+		    }
+        </style>
     </head>
-	
     <body>
         <div id="top">
             <div id="actionbar">
 	            <!-- changed the name of actionbar -->
 	            <a href="javascript:history.back()"> <img src="arrow.png" alt="pfeil" style="width:50px;height:30px;vertical-align :middle; "></a> 
-                <p >Condition Monotoring</p>  
+                <p>Condition Monotoring</p>  
             </div>
-            <div id="content">(=Optimale Qualität)</div>
+        </div>
+        <div class="diagrammbutton">
+            <!-- Adding icon in buttons -->
+            <button class="Temperatur">Temperatur<div id="Temperatur"><img src="Temperatur.png"/></button>
+            <button class="Akkustik">Akustik<div id="Akkustik"><img src="akkustik.png"/></button>
+			<button class="Vibration">Vibration<div id="Temperatur"><img src="vibration.png"/></button>
+        </div>
+        <!-- Referenz zum Chart -->
+        <div style="width: 50%;"> <!-- Anpassung an das Fenster -->
+            <!-- mit width und height kann ich das Diagramm anpassen -->
+            <canvas id="balkenChart" width="600" height="400"></canvas>
+        </div>
+        <!-- Grapherstellung Chart.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <script src="main.js"></script>
+
+            <!-- 
             <svg id="chart" viewBox="0 0 500 300" style="width:600px; max-width:100%; background-color: white">
-                <rect x="10" y="10" height="10" width="100" fill="#ff6600"/> <!-- das hier muss man noch skalieren!!! -->
+                <rect x="10" y="10" height="10" width="100" fill="#ff6600"/> 
                 <rect x="120" y="10" height="10" width="100" fill="blue"/>
                 <rect x="230" y="10" height="10" width="100" fill="yellow"/>
                 <rect x="340" y="10" height="10" width="100" fill="red"/>
             </svg>
-            <div ="diagrammbutton">
-                <button class="Temperatur">Temperatur 
-		<!-- Adding icon in buttons -->
-		<div id="Temperatur">
-		<img src="Temperatur.png"/>
-		</button>
-				
-                <button class="Akkustik">Akkustik
-		<div id="Akkustik">
-		<img src="akkustik.png"/>
-	        </button>
-				
-                <button class="Vibration">Vibration
-		<div id="Temperatur">
-		<img src="vibration.png"/>
-		</button>
-            </div>
-			
-            <div id="content">
-            (=Optimale Qualität)
-            </div>
+            -->
+
+        
+		<div id="content">(=Optimale Qualität)</div>
             <button onclick="aktualisiere()">aktualisiere</button>
         </div>
-
-</body>
-
+    </body>
 </html> 
 

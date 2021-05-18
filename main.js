@@ -34,7 +34,38 @@ function zeigeDaten(daten) {
     // Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
     p.exit().remove();
 }
+var chartObject = document.getElementById('balkenChart'); // oder einfache Anführungszeichen?
 
+var chart = new Chart(chartObject, {
+    type: 'bar', // Art des Diagramms z.B. 'line', 'bar', etc.
+    // Labels definieren -> Abszisse
+    data: {
+        labels: ["Temperatur", "Akustik", "Vibration", "Qualitätsgrenze"],
+        datasets: [{
+            label: "Datensatz Nummer 1",
+            backgroundColor: 'rgba(65,105,225,0.4)',
+            borderColor: 'rgba(65,105,255,1)',
+            // Beispiel Daten
+            data: [3,7,5,2] // für die vier Labels vier Werte
+        }]
+    },
+    // damit der Chart bei 0 beginnt:
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+
+
+
+
+/*
 // Variablen, in denen wir mittels minData die Minimums festhalten
 let minDatumGlobal;
 let minRpmGlobal;
@@ -121,7 +152,7 @@ function minAndMaxData(datenEmpfangen){
     });
     console.log("minAndMaxRpm = " + minMaxRpm[0]);
 }*/
-
+/*
 function modify2(datenEmpfangen){
     for(var i = 0; i < 30; i++) {
         var rpm = datenEmpfangen[i].werte["Rpm"];
@@ -147,7 +178,7 @@ function modify2(datenEmpfangen){
         
     }
 }
-
+*/
 
 /*
 // VL 2 - S.7: verstehe nicht, was der folgende Teil macht und wie wir diesen verwenden sollen:
