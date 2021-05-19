@@ -48,6 +48,8 @@
         // If reach the data successfully, then  parse and save the data in variable auf2
         async function getDaten() {
             const response = await fetch(url);
+	
+	// Save data in variable auf2	
             var auf2 = await response.json();
 
             // Test to print out the data on Website´s console
@@ -94,6 +96,7 @@
                 }
             });
         }
+	 // run the function to create Graph   
         getDaten();
     </script>
 
