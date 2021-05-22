@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+  <canvas id="canvas" width="400" height="200"></canvas>
+</head>
+
+<body>
+  <script>
+
+
+    // variable, which saves link to the website
+    const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
+
+    // If reach the data successfully, then  parse and save the data in variable auf2
+    async function getDaten() {
+      const response = await fetch(url);
+
+      // Save data in variable auf2	
+      var auf2 = await response.json();
+
+      // Test to print out the data on Website´s console
+      console.log(auf2);
+
+      // Create an array of Datum
+      var labels = auf2.map(function (e) {
+        return e.datum;
+      });
+
+
+      // A test to see if all element were saved in array. Doesn ´t affect anything
+      console.log(labels);
+
+      // Create and array of Temperatur     
+      var temps = auf2.map(function (e) {
+        return e.werte.Tavg_temp;
+      });
+
+      // PROBLEM : the given Data were in the datatype float with the comma  => Must turn into float with dot (Example : Turn 29,9 into 29.9) 
+
+      // Replace the comma with dot
+      let newVals1 = temps.map(dots => dots.toString().replace(',', '.'));
+       
+      // Test again =)))
+      console.log(newVals1)
+     
+    
+      var chartObject = document.getElementById('canvas');
+      var chart = new Chart(chartObject, {
+        type: 'bar', // Art des Diagramms z.B. 'line', 'bar', etc.
+        // Labels definieren -> Abszisse
+        data: {
+
+          labels: labels,  // X - Achse
+          datasets: [{
+            label: "Graph Line",
+            backgroundColor: 'rgba(65,105,225,0.4)',
+            borderColor: 'rgba(65,105,255,1)',
+            data: newVals1  // Y - Achse
+          }]
+        },
+        // damit der Chart bei 0 beginnt:
+        options: Object.assign({}, optionsCommand, {
+          scales: {
+            yAxes: [{
+
+            }]
+          }
+        }
+
+        )
+      });
+    }
+    // run the function to create Graph   
+    getDaten();
+  </script>
+
+
+
+  </script>
+
+</body>
+
+</html>
