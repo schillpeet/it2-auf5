@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Historie</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+
+  <style>
+    p {
+      display: inline;
+    }
+  </style>
+  <div id="top">
+    <div id="actionbar">
+
+      <!-- changed the name of actionbar -->
+      <a href="javascript:history.back()"> <img src="arrow.png" alt="pfeil"
+          style="width:50px;height:30px;vertical-align :middle; "></a>
+      <p>Historie</p>
+    </div>
+  </div>
+
+  <!-- the drop down menu -->
+  <div class=menu>
+    <button class="dropDown">Historie</button>
+    <div class="Content">
+      <a href="#">Temperatur</a>
+      <a href="Akustik.html">Akustik</a>
+      <a href="Vibration.html">Vibration</a>
+    </div>
+  </div>
+
+  <!-- Container to resize the chart -->
+  <div class="chart-container" style="position: relative;height:45vh; width:85vw">
+    <canvas id="canvas"></canvas>
+  </div>
+
+</head>
+
+<body>
+  <script>
+
+    // variable, which saves link to the website
+    const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
+
+    // If reach the data successfully, then  parse and save the data in variable auf2
+    async function getDaten() {
+      const response = await fetch(url);
+
+      // Save data in variable auf2	
+      var auf2 = await response.json();
+
+      // Test to print out the data on Website´s console
+      console.log(auf2);
+
+      // Create an array of Datum
+      var labels = auf2.map(function (e) {
+        return e.datum;
+      });
+      // A test to see if all element were saved in array. Doesn ´t affect anything
+      console.log(labels);
+
+      // Create and array of Temperatur     
+      var temps = auf2.map(function (e) {
+        return e.werte.Tavg_temp;
+      });
+
+      // PROBLEM : the given Data were in the datatype float with the comma  => Must turn into float with dot (Example : Turn 29,9 into 29.9) 
+
+      // Replace the comma with dot
+      let newVals1 = temps.map(dots => dots.toString().replace(',', '.'));
+
+      // Test again =)))
+      console.log(newVals1);
+
+      var chartObject = document.getElementById('canvas');
+      var chart1 = new Chart(chartObject, {
+        type: 'bar', // Art des Diagramms z.B. 'line', 'bar', etc.
+        // Labels definieren -> Abszisse
+        data: {
+
+          labels: labels,  // Date array for X-axis
+          datasets: [{
+            label: "Temperatur",
+            backgroundColor: 'rgba(65,105,225,0.4)',
+            borderColor: 'rgba(65,105,255,1)',
+            data: newVals1  // Temperature array for Y-axis
+          }]
+        }
+      }
+      )
+    };
+    getDaten();
+  </script>
+</body>
+
+</html>
