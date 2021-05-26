@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vibration</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+
+    <style>
+        p {
+            display: inline;
+        }
+    </style>
+    <div id="top">
+        <div id="actionbar">
+
+            <!-- changed the name of actionbar -->
+            <a href="javascript:history.back()"> <img src="arrow.png" alt="pfeil"
+                    style="width:50px;height:30px;vertical-align :middle; "></a>
+            <p>Vibration</p>
+        </div>
+    </div>
+    <!-- the drop down menu -->
+    </div>
+    <div class=menu>
+        <button class="dropDown">Historie</button>
+        <div class="Content">
+            <a href="history.html">Temperatur</a>
+            <a href="Akustik.html">Akustik</a>
+            <a href="#">Vibration</a>
+        </div>
+    </div>
+
+    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+        <canvas id="canvas"></canvas>
+    </div>
+</head>
+
+<body>
+
+
+    <script>
+
+        // variable, which saves link to the website
+        const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
+        async function getDaten3() {
+            const response = await fetch(url);
+            var auf2 = await response.json();
+
+            // Create an array of Datum
+            var labels = auf2.map(function (e) {
+                return e.datum;
+            });
+
+            var vibration = auf2.map(function (e) {
+                return e.werte.Tavg_vibr;
+            });
+
+            let newVals3 = vibration.map(dots => dots.toString().replace(',', '.'))
+            var chartObject = document.getElementById('canvas');
+            var chart3 = new Chart(chartObject, {
+                type: 'bar',
+                data: {
+
+                    labels: labels,  // Date Array 
+                    datasets: [{
+                        label: "Vibration",
+                        backgroundColor: 'rgba(65,105,225,0.4)',
+                        borderColor: 'rgba(65,105,255,1)',
+                        data: newVals3  // Vibration Array
+                    }]
+                }
+            }
+            );
+        }
+        getDaten3();
+    </script>
+</body>
+
+</html>
