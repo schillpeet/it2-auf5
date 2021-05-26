@@ -191,7 +191,8 @@ a.escalation-button:hover{
     width: 160px;
     
   }
-  
+
+ /* Set the position of the menu */  
   .menu {
     position: relative;
     display: inline-block;
