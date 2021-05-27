@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- link to css-file -->
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -9,11 +11,21 @@
             <div id="actionbar"><p>PID4CPS - HOME</p></div>
             <a class="escalation-button">Eskalation</a>
             <a class="timer-button">Timer</a>
-            <div id="image"><img src="warning.png" alt="Warning Bild"></div>
+            <div id="image">
+                <a href="ConditionMonitoring.html">
+                    <img src="warning.png" alt="Warning Bild">
+                </a>  
+            </div>
         </div>
-        <!-- unterer Teil enthält Button als Link zu den Charts -->
+        <!-- lower part: Link the icon with Condition Monitoring Button -->
         <div id="body">
             <a href="ConditionMonitoring.html" class="cMonitoring-button">Condition Monitoring</a>
+            <div id="image2"><img src="monitor.png"/></div>
         </div>
+        <div class="language">
+            <a href="#de" language='German'><img src="germany.png"/></a>
+	          <a href="#en" language='English'><img src="British.png"/></a>
+	          <a href="#vi" language='Vietnamese'><img src="Vietnam.png"/></a>
+	      </div>
     </body>
 </html>
