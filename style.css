@@ -1,4 +1,3 @@
-/* Removing browser border */
 *{
 
 	margin : 0;
@@ -7,7 +6,7 @@
 body{
     /* VORGEGEBEN: Schriftart: Roboto; anders als so, habe ich es nicht hinbekommen. Es funktioniert aber so */
     font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
-    background-color:#717E87; /* VORGEGEBEN: Farbe Hintergrund */
+    background-color:#FFFFFF; /* VORGEGEBEN: Farbe Hintergrund */
 
 }
 
@@ -85,12 +84,11 @@ a.escalation-button:hover{
 /* Centering the box*/  
     top:50%;
     left:50%;
-    margin-top:-50px; 
     margin-left:-100px;	
 	
 } 
 #body:hover{
-    background-color : #5A6774;
+    background-color :  #405569;
 }
 #image2 img{
     margin-left : 50px;
@@ -120,7 +118,7 @@ a.escalation-button:hover{
    margin-top : 10px;
 }
 
-.Akkustik{
+.Akustik{
    background-color : #314151;
     padding: 20px;
     width : 160px;
@@ -160,3 +158,73 @@ a.escalation-button:hover{
 #Vibration img{
     margin-top : 10px;
 }
+
+.Historie{
+    background-color : #314151;
+    padding: 20px;
+    width : 200px;
+    border-radius: 10px;
+    border:solid 0.5px #b8babc;
+    box-shadow: 1px 1px 1px 1px #666;
+    cursor: pointer;
+    text-align: center;	
+    color : white;
+    position:absolute;
+    font-size : 16px;
+    top:50%;
+    right:0;
+}
+.Historie:hover {
+    background-color :  #405569;
+}
+
+/* Drop down menu ´s design */ 
+.dropDown {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 10px;
+    border:solid 0.5px #b8babc;
+    box-shadow: 1px 1px 1px 1px #666;
+    width: 160px;
+    
+  }
+  
+  .menu {
+    position: relative;
+    display: inline-block;
+    left:50%;
+    right:50%;
+  }
+  
+  .Content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+  }
+  
+  .Content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .Content a:hover {background-color: #ddd;}
+  
+  .menu:hover .Content {display: block;}
+  
+  .menu:hover .dropDown {background-color: #3e8e41;}
+
+  /* Design chart */
+  .chart-container {
+    
+    left:8%;
+    
+
+  }
