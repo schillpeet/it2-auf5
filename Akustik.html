@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Akustik</title>
@@ -14,7 +13,6 @@
     </style>
     <div id="top">
         <div id="actionbar">
-
             <!-- changed the name of actionbar -->
             <a href="ConditionMonitoring.html"><img src="arrow.png" alt="pfeil"
                 style="width:50px;height:30px;vertical-align :middle; "></a>
@@ -30,22 +28,17 @@
             <a href="Vibration.html">Vibration</a>
         </div>
     </div>
-
     <div class="chart-container" style="position: relative; height:40vh; width:80vw">
         <canvas id="canvas"></canvas>
     </div>
-
 </head>
-
 <body>
     <script>
-
         // variable, which saves link to the website
         //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
         const url = 'http://it2wi1.if-lab.de/rest/mpr_fall2';
         //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
         //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall4';
-
 
         async function getDaten2() {
             const response = await fetch(url);
@@ -75,7 +68,6 @@
             var chart2 = new Chart(chartObject, {
                 type: 'bar',
                 data: {
-
                     labels: labels,  // Date Array for Y-Axis
                     datasets: [{
                         label: "Akustik",
@@ -124,5 +116,4 @@
         getDaten2();
     </script>
 </body>
-
 </html>

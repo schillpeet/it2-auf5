@@ -1,4 +1,3 @@
-/* Removing browser border */
 *{
 
 	margin : 0;
@@ -7,7 +6,7 @@
 body{
     /* VORGEGEBEN: Schriftart: Roboto; anders als so, habe ich es nicht hinbekommen. Es funktioniert aber so */
     font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
-    background-color:#717E87; /* VORGEGEBEN: Farbe Hintergrund */
+    background-color:#FFFFFF; /* VORGEGEBEN: Farbe Hintergrund */
 
 }
 
@@ -86,7 +85,6 @@ a.escalation-button:hover{
     position:absolute;
     top:50%;   
     left:50%;
-    margin-top:-50px; 
     margin-left:-100px;	
 }
 #body:hover{
@@ -162,7 +160,6 @@ a.escalation-button:hover{
     top:10%;
     left:50%; /* when I opened chrome developer options, this button isn't central. Otherwise all is fine. */
     margin-left:-100px;
-    
 }
 
 #Akkustik img{
@@ -235,40 +232,38 @@ a.escalation-button:hover{
     border:solid 0.5px #b8babc;
     box-shadow: 1px 1px 1px 1px #666;
     width: 160px;
-    
   }
   
-  .menu {
+.menu {
     position: relative;
     display: inline-block;
     left:50%;
     right:50%;
     padding: auto;
     height: 200px;
-  }
+}
   
-  .Content {
+.Content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    
   }
   
-  .Content a {
+.Content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
+}
   
-  .Content a:hover {background-color: #ddd;}
+.Content a:hover {background-color: #ddd;}
   
-  .menu:hover .Content {display: block;}
+.menu:hover .Content {display: block;}
   
-  .menu:hover .dropDown {background-color: #3e8e41;}
+.menu:hover .dropDown {background-color: #3e8e41;}
 
   /* Design chart */
 .chart-container {

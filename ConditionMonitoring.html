@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Visualisierung des Graphen</title>
@@ -17,11 +15,11 @@
         }
     </style>
 </head>
-
 <body>
     <div id="top">
         <div id="actionbar">
             <!-- changed the name of actionbar -->
+
             <a href="index.html"> <img src="arrow.png" alt="pfeil"
                     style="width:50px;height:30px;vertical-align :middle; "></a>
             <p>Home / Condition Monotoring</p>
@@ -43,9 +41,6 @@
                 <div id="Vibration"><img src="vibration.png"/></div>
             </button>
         </a>
- <!--       <button href="history.html" class="Temperatur">Temperatur<div id="Temperatur"><img src="Temperatur.png"></button> 
-        <button href="Akustik.html" class="Akkustik">Akustik<div id="Akkustik"><img src="Akkustik.png"></button> 
-        <button href="Vibration.html" class="Vibration">Vibration<div id="Vibration"><img src="vibration.png"></button>-->
     </div>
     <!-- Define the Chart -->
     <!--<div class="chart-container" style="position: relative; height:40vh; width:80vw">-->
@@ -54,6 +49,7 @@
     </div>
     <!-- Link with Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
     <div class="chart-container" style="position: relative; height:40vh; width:80vw">
          <canvas id="canvas" ></canvas>
     </div>
@@ -61,15 +57,17 @@
     <script>
 
         // variable, which saves link to the website
-        const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
+        const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
+        // const url = 'http://it2wi1.if-lab.de/rest/mpr_fall2';
+        // const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
+        // const url = 'http://it2wi1.if-lab.de/rest/mpr_fall4';
 
-        // Other url's: http://it2wi1.if-lab.de/rest/mpr_fall2
 
         // If reach the data successfully, then  parse and save the data in variable auf2
         async function getDaten() {
             const response = await fetch(url);
 	
-	// Save data in variable auf2	
+	          // Save data in variable auf2	
             var auf2 = await response.json();
 
             // Test to print out the data on Website´s console
@@ -87,11 +85,6 @@
             var data = auf2.map(function (e) {
                 return e.werte.Tavg_temp;
             });
-            console.log("hello")
-            for(var i= 0; i < 10; i++) {
-                console.log(auf2.werte);
-            }
-            console.log("hello")
 
             var horizontalLine = 125;
             // A test too =)))
@@ -108,6 +101,7 @@
                     labels: labels,  // X - Achse
                     datasets: [{
                         label: "Graph Line",
+
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         //backgroundColor: 'rgba(65,105,225,0.4)',
                         borderColor: 'rgb(255, 99, 132)',
@@ -116,7 +110,7 @@
                         
                         data: newVals1
                     }]
-                    
+
                 },
                 // damit der Chart bei 0 beginnt:
                 options: {
@@ -128,21 +122,10 @@
                         }]
                     }
                 }
-            });
-            
+            });         
         }
         // run the function to create Graph   
         getDaten();
     </script>
-<!--
-    <div id="content">(=Optimale Qualität)</div>
-        <button onclick="aktualisiere()">aktualisiere</button>
-    </div> -->
-
 </body>
-
 </html>
-        
-		
-   
-
