@@ -135,12 +135,12 @@
             var dataset = chart3.data.datasets[0];
             for (var i = 0; i < dataset.data.length; i++) {
                 // normal vibration
-                if (dataset.data[i] <= 0.15) {
+                if (dataset.data[i] < 0.15) {
                     dataset.backgroundColor[i] = chartColors.color1;
 
                 }
                 // If the vibration reach Toleranzgrenze
-                if ((dataset.data[i] >= 0.15) && (dataset.data[i] <= 0.4)) {
+                if ((dataset.data[i] >= 0.15) && (dataset.data[i] < 0.4)) {
                     dataset.backgroundColor[i] = chartColors.color2;
                 }
                 // If the vibration reach Schadenszgrenze
