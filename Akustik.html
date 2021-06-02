@@ -128,16 +128,16 @@
       var dataset = chart2.data.datasets[0];
       for (var i = 0; i < dataset.data.length; i++) {
         // normal akustik
-        if (dataset.data[i] <= 80) {
+        if (dataset.data[i] < 80) {
           dataset.backgroundColor[i] = chartColors.color1;
 
         }
         // If the akusti reach Toleranzgrenze
-        if ((dataset.data[i] >= 80) && (dataset.data[i] <= 120)) {
+        if ((dataset.data[i] >= 80) && (dataset.data[i] < 117)) {
           dataset.backgroundColor[i] = chartColors.color2;
         }
         // If the akustik reach Schadenszgrenze
-        if (dataset.data[i] >= 120) {
+        if (dataset.data[i] >= 117) {
           dataset.backgroundColor[i] = chartColors.color3;
 
         }
