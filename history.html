@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <title>Temperatur</title>   <!-- I changed the title to Temperatur -->
+  <title>Temperatur</title> <!-- I changed the title to Temperatur -->
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
@@ -15,7 +16,7 @@
     <div id="actionbar">
       <!-- changed the name of actionbar -->
       <!-- change the backward function -->
-        <a href="ConditionMonitoring.html"><img src="arrow.png" alt="pfeil"
+      <a href="ConditionMonitoring.html"><img src="arrow.png" alt="pfeil"
           style="width:50px;height:30px;vertical-align :middle; "></a>
       <p>Home / Condition Monotoring / Temperatur</p>
     </div>
@@ -78,15 +79,25 @@
       //console.log(newVals1);
 
       // temperature tolerance of limit - NEW
-      var temp_tolerance = auf2.map(function(e){
+      var temp_tolerance = auf2.map(function (e) {
         return 75;
       });
 
       // temperature damage limit - NEW
-      var temp_damage = auf2.map(function (e){
+      var temp_damage = auf2.map(function (e) {
         return 150;
       });
-      
+
+      // BackgroundColor Array
+      var backgroundColor = new Array;
+
+      // Variables colors 
+      var chartColors = {
+        color1: 'rgba(65,105,225,0.4)', // Default color blue
+        color2: 'rgb(34,139,34)', // Color green
+        color3: '#800000' // Color red
+      };
+
       var chartObject = document.getElementById('canvas');
       var chart1 = new Chart(chartObject, {
         type: 'bar', // Art des Diagramms z.B. 'line', 'bar', etc.        
@@ -101,10 +112,10 @@
               var temp_tol = temp_tolerance;
               return current_val > temp_tol ? 'red' : 'blue';
             },*/
-            backgroundColor: 'rgba(65,105,225,0.4)',
+            backgroundColor: backgroundColor,
             borderColor: 'rgba(65,105,255,1)',
             data: newVals1  // Temperature array for Y-axis
-          },{
+          }, {
             label: "Toleranzgrenze: 75 °C",
             backgroundColor: 'rgb(50,205,50)', // LimeGreen
             borderColor: 'rgb(34,139,34)', // ForestGreen
@@ -113,7 +124,7 @@
             fill: false,
             pointRadius: 0, // this value disable the point drawing
             borderWidth: 3,
-          },{
+          }, {
             label: "Schadensgrenze: 150 °C",
             backgroundColor: 'rgba(238,64,0)',   // OrgangeRed2
             borderColor: 'rgba(178,34,34)',   // firebrick
@@ -126,24 +137,43 @@
         },
         options: {
           title: {
-              display: true,
-              text: 'Temperaturverlauf der Wellenkupplung',
-              
-            },
-            scales: {
-              yAxes: [{
-                scaleLabel: {
-                  //ticks: {beginAtZero: true},
-                  display: true,
-                  labelString: 'Temperatur in °C'
-                }
-              }]
-            }
+            display: true,
+            text: 'Temperaturverlauf der Wellenkupplung',
+
+          },
+          scales: {
+            yAxes: [{
+              scaleLabel: {
+                //ticks: {beginAtZero: true},
+                display: true,
+                labelString: 'Temperatur in °C'
+              }
+            }]
+          }
         }
       }
       )
+      var dataset = chart1.data.datasets[0];
+      for (var i = 0; i < dataset.data.length; i++) {
+        // normal Temp
+        if (dataset.data[i] <= 75) {
+          dataset.backgroundColor[i] = chartColors.color1;
+
+        }
+        // If the Temp reach Toleranzgrenze
+        if ((dataset.data[i] >= 75) && (dataset.data[i] <= 150)) {
+          dataset.backgroundColor[i] = chartColors.color2;
+        }
+        // If the Temp reach Schadenszgrenze
+        if (dataset.data[i] >= 150) {
+          dataset.backgroundColor[i] = chartColors.color3;
+
+        }
+      }
+      chart1.update();
     };
     getDaten();
   </script>
 </body>
+
 </html>
