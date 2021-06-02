@@ -156,12 +156,12 @@
       var dataset = chart1.data.datasets[0];
       for (var i = 0; i < dataset.data.length; i++) {
         // normal Temp
-        if (dataset.data[i] <= 75) {
+        if (dataset.data[i] < 75) {
           dataset.backgroundColor[i] = chartColors.color1;
 
         }
         // If the Temp reach Toleranzgrenze
-        if ((dataset.data[i] >= 75) && (dataset.data[i] <= 150)) {
+        if ((dataset.data[i] >= 75) && (dataset.data[i] < 150)) {
           dataset.backgroundColor[i] = chartColors.color2;
         }
         // If the Temp reach Schadenszgrenze
