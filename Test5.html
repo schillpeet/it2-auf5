@@ -8,6 +8,17 @@
 </head>
 
 <body>
+    <style>
+        .x.axis line {
+            shape-rendering: auto;
+        }
+
+        .line {
+            fill: none;
+            stroke: #000;
+            stroke-width: 1.5px;
+        }
+    </style>
 
     <script>
         (function () {
@@ -15,7 +26,7 @@
             // we have in total 298 values in our Array
             var n = 298,
                 // The Chart should update every seconds
-                duration = 1000,// 1000 milliseconds = 1 second
+                duration = 250,// 1000 milliseconds = 1 second
                 now = new Date(Date.now() - duration), // Have no idea why is that minus but it works =)))
                 count = 0,
                 data = d3.range(n).map(function () { return 0; });
