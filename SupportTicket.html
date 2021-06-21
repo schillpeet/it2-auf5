@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Akustik</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+
+    <style>
+        p {
+            display: inline;
+        }
+    </style>
+    <div id="top">
+        <div id="actionbar">
+            <!-- changed the name of actionbar -->
+            <a href="ConditionMonitoring.html"><img src="arrow.png" alt="pfeil"
+                    style="width:50px;height:30px;vertical-align :middle; "></a>
+            <p>Home / Condition Monotoring / ReportIssue</p>
+        </div>
+
+    </div>
+
+</head>
+
+<body>
+    <!-- Create a box to resize and place the Support Ticket -->
+    <div class="box">
+        <form method="post" action="mailto:tn220198@gmail.com" onSubmit="return validateForm();">
+            <div style="max-width: 400px;">
+            </div>
+
+            <div style="padding-bottom: 18px;font-size : 24px; margin-left: 220px;">Report An Issue</div>
+
+            <!-- Create an  red * symbol (just check on the field "Reported by") to imply an important field -->
+            <label style="margin-left: 40px;" for="Name"> Reported by <span style="color: red;"> *</span></label><br />
+            <!-- Instruction for user to write name on the field -->
+            <input type="text" id="data_2" name="Name" placeholder="Your name.." class="form-control" /><br />
+
+
+    
+    <!-- Drop down menu for Severrity -->
+    <label style="margin-left: 40px;" for="Severity">Severity</label><br />
+    <select id="data_3" name="Severity" style="max-width : 300px;" class="form-control">
+        <option>Critical</option>
+        <option>Major</option>
+        <option>Moderate</option>
+        <option>Minor</option>
+        <option>Cosmetic</option>
+    </select>
+    <br />
+
+    <!-- Drop down menu for Priority -->
+    <label style="margin-left: 40px;" for="Priority">Priority</label><br />
+    <select id="data_4" name="Priority" style="max-width : 300px;" class="form-control">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+    </select>
+    <br />
+
+    <!-- Create an  red * symbol (just check on the field "Summary") to imply an important field -->
+    <label style="margin-left: 40px;" for="Summary"> E-mail <span style="color: red;"> *</span><br /> </label>
+    <!-- Instruction for user to write name on the field -->
+    <input type="text" id="data_6" name="Summary" class="form-control" />
+    <br />
+
+    <!-- Discription box -->
+    <label style="margin-left: 40px;" for="Discription">Discription</label><br />
+    <textarea id="data_7" false name="Discription" rows="6" class="form-control"></textarea>
+    <br />
+
+     <!-- submit button -->
+    <div style="padding-bottom: 18px; margin-left: 270px;"><input name="skip_Submit" value="Submit" type="submit" /></div>
+
+    </form>
+    </div>
+    <script type="text/javascript">
+        function validateForm() {
+            if (isEmpty(document.getElementById('data_2').value.trim())) {
+                alert('Reported by is required!');
+                return false;
+            }
+            if (isEmpty(document.getElementById('data_6').value.trim())) {
+                alert('Summary is required!');
+                return false;
+            }
+            return true;
+        }
+        function isEmpty(str) { return (str.length === 0 || !str.trim()); }
+        function validateEmail(email) {
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
+            return isEmpty(email) || re.test(email);
+        }
+    </script>
+</body>
+
+</html>
