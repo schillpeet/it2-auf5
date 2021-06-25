@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- link to css-file -->
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <!-- oberer Teil enthält actionbar, escalation- & timer-button und Warnsymbol -->
-        <div id="top">
-            <div id="actionbar"><p>PID4CPS - HOME</p></div>
-            <a class="escalation-button">Eskalation</a>
-            <a class="timer-button">Timer</a>
-            <div id="image">
-                <a href="ConditionMonitoring.html">
-                    <img src="warning.png" alt="Warning Bild">
-                </a>  
-            </div>
-        </div>
-        <!-- lower part: Link the icon with Condition Monitoring Button -->
-        <div class="body">
-            <a href="ConditionMonitoring.html">
-                <button class="cMonitoring-button">Condition Monitoring
-                    <div id="monitor_bild"><img src="monitor.png"/>
-                </button>
-            </a> 
-        </div>
-        <div class="language">
-          <a href="#de" language='German'><img src="germany.png"/></a>
-	        <a href="#en" language='English'><img src="British.png"/></a>
-	        <a href="#vi" language='Vietnamese'><img src="Vietnam.png"/></a>
-	    </div>
-        <!-- Create Historie Button -->
-        <div class="Ersatz">
-            <!-- Link to Historie Website -->
-            <a href = "history.html">
-                <button class="Historie"> Historie 
-                <!-- Link an icon to the button -->
-                <div id="Ersatz"><img src="Historie.png" />
-                </button>
-            </a>       
-    </body>
+
+<head>
+  <!-- link to css-file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- oberer Teil enthält actionbar, escalation- & timer-button und Warnsymbol -->
+  <div id="top">
+    <div id="actionbar">
+      <p>PID4CPS - HOME</p>
+    </div>
+    <a class="escalation-button">Eskalation</a>
+    <a class="timer-button">Timer</a>
+    <div id="image">
+      <a href="ConditionMonitoring.html">
+        <img src="warning.png" alt="Warning Bild">
+      </a>
+    </div>
+  </div>
+  
+  <div class="language">
+    <a href="#de" language='German'><img src="germany.png" /></a>
+    <a href="#en" language='English'><img src="British.png" /></a>
+    <a href="#vi" language='Vietnamese'><img src="Vietnam.png" /></a>
+  </div>
+
+  <!-- lower part: Link the icon with Condition Monitoring Button -->
+  <div class="body">
+    <a href="ConditionMonitoring.html">
+      <button class="cMonitoring-button">Condition Monitoring
+        <div id="monitor_bild"><img src="monitor.png" />
+      </button>
+    </a>
+  </div>
+
+  <!-- Create Historie Button -->
+  <div class="Ersatz">
+    <!-- Link to Historie Website -->
+    <a href="history.html">
+      <button class="Historie"> Historie
+        <!-- Link an icon to the button -->
+        <div id="Ersatz"><img src="Historie.png" />
+      </button>
+    </a>
+  </div>
+  
+  <!-- Create Support Ticker Button -->
+  <div class="Support">
+    <!-- Link to SupportTicket Website -->
+    <a href="SupportTicket.html">
+      <button class="Support2"> Support Ticket
+        <!-- Link an icon to the button -->
+        <div id="Support"><img src="Support.png" />
+      </button>
+    </a></div>
+</body>
+
 </html>
