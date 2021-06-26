@@ -5,9 +5,6 @@
     <title>Visualisierung des Graphen</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- wichtig: diese Quelle muss als erstes stehen, also vor main.js!!! -->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-
     <!-- set the arrow and the text in line -->
     <style>
         p {
@@ -41,91 +38,16 @@
                 <div id="Vibration"><img src="vibration.png"/></div>
             </button>
         </a>
+	<a href="Qualitaet.html">
+            <button class="Qualitaet">Qualität
+                <div id="Qualitaet"><img src="#"/></div>
+            </button>
+        </a>
+        <a href="Rpm.html">
+            <button class="Rpm">Rpm
+                <div id="Rpm"><img src="#"/></div>
+            </button>
+        </a>
     </div>
-    <!-- Define the Chart -->
-    <!--<div class="chart-container" style="position: relative; height:40vh; width:80vw">-->
-    <div class="chart-container" style="position: relative; top: 80px">
-        <canvas id="myChart"></canvas>
-    </div>
-    <!-- Link with Chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-
-    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-         <canvas id="canvas" ></canvas>
-    </div>
-   
-    <script>
-
-        // variable, which saves link to the website
-        const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
-        // const url = 'http://it2wi1.if-lab.de/rest/mpr_fall2';
-        // const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
-        // const url = 'http://it2wi1.if-lab.de/rest/mpr_fall4';
-
-
-        // If reach the data successfully, then  parse and save the data in variable auf2
-        async function getDaten() {
-            const response = await fetch(url);
-	
-	          // Save data in variable auf2	
-            var auf2 = await response.json();
-
-            // Test to print out the data on Website´s console
-            console.log(auf2);
-
-            // Create an array of Datum
-            var labels = auf2.map(function (e) {
-                return e.datum;
-            });
-
-            // A test to see if all element were saved in array. Doesn ´t affect anything
-            //console.log(labels);
-
-            // Create and array of Temperatur
-            var data = auf2.map(function (e) {
-                return e.werte.Tavg_temp;
-            });
-
-            var horizontalLine = 125;
-            // A test too =)))
-            //console.log(data);
-            
-            let newVals1 = data.map(dots => dots.toString().replace(',', '.'));
-
-            var chartObject = document.getElementById('canvas');
-            var chart = new Chart(chartObject, {
-                type: 'bar', // Art des Diagramms z.B. 'line', 'bar', etc.
-                // Labels definieren -> Abszisse
-                data: {
-
-                    labels: labels,  // X - Achse
-                    datasets: [{
-                        label: "Graph Line",
-
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        //backgroundColor: 'rgba(65,105,225,0.4)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        //borderColor: 'rgba(55,211,50,1)',
-                        //data: data     // Y - 
-                        
-                        data: newVals1
-                    }]
-
-                },
-                // damit der Chart bei 0 beginnt:
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            });         
-        }
-        // run the function to create Graph   
-        getDaten();
-    </script>
 </body>
 </html>
