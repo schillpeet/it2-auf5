@@ -154,7 +154,7 @@ a.escalation-button:hover{
    position:absolute;       
    color : white;
    font-size : 16px;
-   top : 10%;
+   top : 30%;
    left :10%;
 }
 
@@ -178,7 +178,7 @@ a.escalation-button:hover{
     position:absolute;
     color : white;
     font-size : 16px;
-    top:10%;
+    top:30%;
     left:50%; /* when I opened chrome developer options, this button isn't central. Otherwise all is fine. */
     margin-left:-100px;
 }
@@ -203,7 +203,7 @@ a.escalation-button:hover{
     position:absolute;
     color : white;
     font-size : 16px;
-    top:10%;
+    top:30%;
     right:10%;
 }
 
@@ -227,8 +227,9 @@ a.escalation-button:hover{
     position:absolute;
     color : white;
     font-size : 16px;
-    top:50%;
-    right:10%;
+    top:60%;
+    left:50%; 
+    margin-left:-100px;
 }
 
 #Qualitaet img{
@@ -250,8 +251,8 @@ a.escalation-button:hover{
     position:absolute;
     color : white;
     font-size : 16px;
-    top:50%;
-    right:50%;
+    top:60%;
+    left:10%;
 }
 
 #Rpm img{
@@ -261,6 +262,32 @@ a.escalation-button:hover{
 .Rpm:hover{
     background-color :  #405569;
 }
+
+.SupTicket{
+    background-color : #314151;
+    padding: 20px;
+    width : 160px;
+    border-radius: 10px;
+    border:solid 0.5px #b8babc;
+    box-shadow: 1px 1px 1px 1px #666;
+    cursor: pointer;
+    text-align: center;	
+    position:absolute;
+    color : white;
+    font-size : 16px;
+    top:60%;
+    right:10%;
+}
+
+#SupTicket img{
+    margin-top : 10px;
+}
+
+.SupTicket:hover{
+    background-color :  #405569;
+}
+
+
 
 #canvas{
     background-color: white;
