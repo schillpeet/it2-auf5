@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Akustik</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
   <style>
@@ -17,26 +18,172 @@
       <!-- changed the name of actionbar -->
       <a href="ConditionMonitoring.html"><img src="arrow.png" alt="pfeil"
           style="width:50px;height:30px;vertical-align :middle; "></a>
-      <p>Home / Condition Monotoring / Akustik</p>
+      <p>Home / Condition Monitoring / Akustik</p>
     </div>
     <!-- the drop down menu -->
   </div>
+
   <div class="menu">
     <button class="dropDown">Historie</button>
     <div class="Content">
       <a href="history.html">Temperatur</a>
       <a href="#">Akustik</a>
       <a href="Vibration.html">Vibration</a>
-      <a href="Qualitaet.html">Qualität</a>
+      <a href="Qualitaetm.html">Qualität</a>
       <a href="Rpm.html">Rpm</a>
     </div>
   </div>
   <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" style="background-color: aliceblue;"></canvas>
   </div>
 </head>
+<body translate="no">
+  <script>
+      // Variables colors
+      var backgroundColor = new Array; // new
+      var chartColorsBackground = { // NEW
+          color1: 'rgba(65,105,225,0.4)', // Default color blue
+          color2: 'rgb(34,139,34)', // Color green
+          //color3: '#800000' // Color red
+          color3:'rgba(238,64,0)' // changed the color, but it's still red
+      };
 
-<body>
+      var borderColor = new Array;
+      var chartColorsBorder = {
+          color11: 'rgba(65,105,225,1)', // Default color blue,- I change the last value from 0.4 to 1.0 it marks it stronger!
+          color22: 'rgb(34,139,34)', // Color green
+          //color33: '#800000' // Color red
+          color33: 'rgba(238,34,34)'
+      }
+
+      var ctx_live_laut = document.getElementById("canvas");
+      var myChart_laut = new Chart(ctx_live_laut, {
+          type: 'bar',
+          data: {
+              labels: [], // X-Axes: maybe we can use here the date in a 10 sec interval?
+              datasets: [{
+                  label: 'Akustik', // NEW
+                  data: [],
+                  borderWidth: 1,
+                  borderColor: borderColor, // NEW
+                  backgroundColor: backgroundColor, // NEW
+                  
+              }, {
+                  // new l.47-63
+                  label: "Toleranzgrenze: 80 dB",
+                  type: 'line',
+                  backgroundColor: 'rgb(50,205,50)', // LimeGreen
+                  borderColor: 'rgb(34,139,34)', // ForestGreen
+                  data: [],
+                  fill: false,
+                  pointRadius: 0, // this value disable the point drawing
+                  borderWidth: 3,
+              },{
+                  label: "Schadensgrenze: 117 dB",
+                  type: 'line',
+                  backgroundColor: 'rgba(238,64,0)',   // OrgangeRed2
+                  borderColor: 'rgba(178,34,34)',   // firebrick
+                  data: [],
+                  fill: false,
+                  pointRadius: 0,
+                  borderWidth: 3,
+              }]
+          },
+          options: {
+              responsive: true,
+              title: {
+                  display: true,
+                  text: "Bewegung der Wellen und der von dieser ausgehenden Akustik",
+              },
+              legend: {
+                  //display: false // if use falsse, we can't see our legends! I would prefer to see legends!
+              },
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true,
+                      },
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Akustik in Dezibel'
+                      }
+                  }],
+                  // NEW LINES
+                  xAxes: [{
+                    ticks: {
+                      maxTicksLimit: 12   // this will show max 12 (timestamp)-values on the x-axis,- it looks better!
+                    }
+                  }]
+
+              }
+          }
+      });
+      // Function get Data
+      var getDataLaut = function () {
+          $.ajax({
+              // Get Data from URL and save in variable data
+              url: 'http://it2wi1.if-lab.de/rest/mpr_fall3' ,
+              success: function (data) {
+                  // Get the acoustic array
+                  var Acoustic = data.map(function (e) {
+                      return e.werte.Tavg_laut;
+                  });
+                  // variable of acoustic tolerance - NEW
+                  var laut_tolerance = 80;
+                  // variable of acoustic damage zone - NEW
+                  var laut_damage = 117;
+                  // select the current date
+                  var date_actual = data.map(function (e) {
+                    return e.datum;
+                  });
+
+                  // Replace dot with comma
+                  let Laut = Acoustic.map(dots => dots.toString().replace(',', '.'))
+                  // For loop to seperate each element in an array. The time between 2 elements is 2 seconds
+                  for (let i = 0; i < data.length; i++) {
+                      setTimeout(() => {
+                          
+                          myChart_laut.data.labels.push(date_actual[i]); // x-axis, current date
+
+                          //myChart.data.labels.push(i); // x-axis
+                          myChart_laut.data.datasets[0].data.push(Laut[i]); // the actual acoustic
+                          myChart_laut.data.datasets[1].data.push(laut_tolerance); // the actuel acoustic_tolerance line - NEW
+                          myChart_laut.data.datasets[2].data.push(laut_damage); // the actuel acoustic_damage line - NEW
+                          myChart_laut.data.labels.shift;
+                          myChart_laut.update();
+                          // change the color if the values of acoustic over the tolerance border or over the damage border
+                          if(Laut[i] < 80){
+                              myChart_laut.data.datasets[0].backgroundColor = chartColorsBackground.color1;
+                              myChart_laut.data.datasets[0].borderColor = chartColorsBorder.color11;
+                              
+                          } 
+                          if((Laut[i] >= 80) && (Laut[i] < 117)){
+                              myChart_laut.data.datasets[0].backgroundColor = chartColorsBackground.color2;
+                              myChart_laut.data.datasets[0].borderColor = chartColorsBorder.color22;
+
+                          } 
+                          if(Laut[i] >= 117){
+                              myChart_laut.data.datasets[0].backgroundColor = chartColorsBackground.color3;
+                              myChart_laut.data.datasets[0].borderColor = chartColorsBorder.color33;
+
+                          }
+                      }, i * 100); // standard = 2000; take 100 for fast presentation
+                    
+                  }
+                 
+              }
+
+          });
+      };
+  
+
+      getDataLaut();
+
+  </script>
+</body>
+
+</html>
+<!--<body>
   <script>
     // variable, which saves link to the website
     //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
@@ -153,3 +300,4 @@
 </body>
 
 </html>
+-->
