@@ -3,8 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Temperatur</title> <!-- I changed the title to Temperatur -->
+  <title>Temperatur</title> 
   <link rel="stylesheet" href="style.css">
+  <!-- line 9 is new -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
   <style>
@@ -14,8 +16,6 @@
   </style>
   <div id="top">
     <div id="actionbar">
-      <!-- changed the name of actionbar -->
-      <!-- change the backward function -->
       <a href="ConditionMonitoring.html"><img src="arrow.png" alt="pfeil"
           style="width:50px;height:30px;vertical-align :middle; "></a>
       <p>Home / Condition Monotoring / Temperatur</p>
@@ -29,25 +29,180 @@
       <a href="#">Temperatur</a>
       <a href="Akustik.html">Akustik</a>
       <a href="Vibration.html">Vibration</a>
-      <a href="Qualitaet.html">Qualität</a>
-      <a href="Rpm.html">Rpm</a>
     </div>
   </div>
 
   <!-- Container to resize the chart -->
-  <div class="chart-container" style="position: relative;height:40vh; width:80vw">
+  <!--<div class="chart-container" style="position: relative;height:40vh; width:80vw">
     <canvas id="canvas"></canvas>
+  </div>-->
+  <!-- Container to resize the chart -->
+  <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="mycanvas" style="background-color: aliceblue;"></canvas>
   </div>
 
 </head>
-
-<body>
+<body translate="no">
+  
+  <!--<div style="width:50%;">
+      <canvas id="mycanvas"></canvas>
+  </div>-->
+  
   <script>
+      // Variables colors
+      var backgroundColor = new Array; // new
+      var chartColorsBackground = { // NEW
+          color1: 'rgba(65,105,225,0.4)', // Default color blue
+          color2: 'rgb(34,139,34)', // Color green
+          //color3: '#800000' // Color red
+          color3:'rgba(238,64,0)' // changed the color, but it's still red
+      };
 
+      var borderColor = new Array;
+      var chartColorsBorder = {
+          color11: 'rgba(65,105,225,1)', // Default color blue,- I change the last value from 0.4 to 1.0 it marks it stronger!
+          color22: 'rgb(34,139,34)', // Color green
+          //color33: '#800000' // Color red
+          color33: 'rgba(238,34,34)'
+      }
+
+      var ctx_live = document.getElementById("mycanvas");
+      var myChart = new Chart(ctx_live, {
+          type: 'bar',
+          data: {
+              labels: [], // X-Axes: maybe we can use here the date in a 10 sec interval?
+              datasets: [{
+                  label: 'Temperatur', // NEW
+                  data: [],
+                  borderWidth: 1,
+                  borderColor: borderColor, // NEW
+                  backgroundColor: backgroundColor, // NEW
+                  
+              }, {
+                  // new l.47-63
+                  label: "Toleranzgrenze: 75 °C",
+                  type: 'line',
+                  backgroundColor: 'rgb(50,205,50)', // LimeGreen
+                  borderColor: 'rgb(34,139,34)', // ForestGreen
+                  data: [],
+                  fill: false,
+                  pointRadius: 0, // this value disable the point drawing
+                  borderWidth: 3,
+              },{
+                  label: "Schadensgrenze: 150 °C",
+                  type: 'line',
+                  backgroundColor: 'rgba(238,64,0)',   // OrgangeRed2
+                  borderColor: 'rgba(178,34,34)',   // firebrick
+                  data: [],
+                  fill: false,
+                  pointRadius: 0,
+                  borderWidth: 3,
+              }]
+          },
+          options: {
+              responsive: true,
+              title: {
+                  display: true,
+                  text: "Temperaturverlauf der Wellenkupplung",
+              },
+              legend: {
+                  //display: false // if use falsse, we can't see our legends! I would prefer to see legends!
+              },
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true,
+                      },
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Temperatur in °C'
+                      }
+                  }],
+                  // NEW LINES
+                  xAxes: [{
+                    ticks: {
+                      maxTicksLimit: 12   // this will show max 12 (timestamp)-values on the x-axis,- it looks better!
+                    }
+                  }]
+
+              }
+          }
+      });
+      // Function get Data
+      var getData = function () {
+          $.ajax({
+              // Get Data from URL and save in variable data
+              url: 'http://it2wi1.if-lab.de/rest/mpr_fall3' ,
+              success: function (data) {
+                  // Get the Temperatur array
+                  var Temperatur = data.map(function (e) {
+                      return e.werte.Tavg_temp;
+                  });
+                  // variable of temperature tolerance - NEW
+                  var temp_tolerance = 75;
+                  // variable of temperature damage zone - NEW
+                  var temp_damage = 150;
+                  // select the current date
+                  var date_actual = data.map(function (e) {
+                    return e.datum;
+                  });
+
+                  // Replace dot with comma
+                  let Temp = Temperatur.map(dots => dots.toString().replace(',', '.'))
+                  // For loop to seperate each element in an array. The time between 2 elements is 2 seconds
+                  for (let i = 0; i < data.length; i++) {
+                      setTimeout(() => {
+                          
+                          myChart.data.labels.push(date_actual[i]); // x-axis, current date
+
+                          //myChart.data.labels.push(i); // x-axis
+                          myChart.data.datasets[0].data.push(Temp[i]); // the actual temperature
+                          myChart.data.datasets[1].data.push(temp_tolerance); // the actuel temp_tolerance line - NEW
+                          myChart.data.datasets[2].data.push(temp_damage); // the actuel temp_damage line - NEW
+                          myChart.data.labels.shift;
+                          myChart.update();
+                          // change the color if the values of temperature over the tolerance border or over the damage border
+                          if(Temp[i] < 75){
+                              myChart.data.datasets[0].backgroundColor = chartColorsBackground.color1;
+                              myChart.data.datasets[0].borderColor = chartColorsBorder.color11;
+                              
+                          } 
+                          if((Temp[i] >= 75) && (Temp[i] < 150)){
+                              myChart.data.datasets[0].backgroundColor = chartColorsBackground.color2;
+                              myChart.data.datasets[0].borderColor = chartColorsBorder.color22;
+
+                          } 
+                          if(Temp[i] >= 150){
+                              myChart.data.datasets[0].backgroundColor = chartColorsBackground.color3;
+                              myChart.data.datasets[0].borderColor = chartColorsBorder.color33;
+
+                          }
+                      }, i * 100); // standard = 2000; take 100 for fast presentation
+                    
+                  }
+                 
+              }
+
+          });
+      };
+  
+
+      getData();
+
+  </script>
+</body>
+
+</html>
+
+<!--- THE FOLLOWING LINES CAN TO DELETE, IF ALL IS FINE! -->
+ <!---<body>
+ <script>
+/*
     // variable, which saves link to the website
-    const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
+    // now we use 'url' in the script part
+    //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
     //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall2';
-    //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
+    const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
     //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall4';
 
     // If reach the data successfully, then  parse and save the data in variable auf2
@@ -113,7 +268,7 @@
               current_val = newVals1.werte.Tavg_temp;
               var temp_tol = temp_tolerance;
               return current_val > temp_tol ? 'red' : 'blue';
-            },*/
+            },*//*
             backgroundColor: backgroundColor,
             borderColor: 'rgba(65,105,255,1)',
             data: newVals1  // Temperature array for Y-axis
@@ -174,8 +329,8 @@
       }
       chart1.update();
     };
-    getDaten();
+    getDaten();*/
   </script>
 </body>
-
 </html>
+-->
