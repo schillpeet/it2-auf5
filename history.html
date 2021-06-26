@@ -40,11 +40,16 @@
   </div>-->
   <!-- Container to resize the chart -->
   <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-    <canvas id="mycanvas" style="background-color: aliceblue;"></canvas>
+    <canvas id="canvas" style="background-color: aliceblue;"></canvas>
   </div>
 
 </head>
 <body translate="no">
+
+  <!-- Create button to run the whole function -->
+  <div class="TempButton ">
+  <button onclick="getData()">Click me</button><div></div>
+
   
   <!--<div style="width:50%;">
       <canvas id="mycanvas"></canvas>
@@ -68,7 +73,7 @@
           color33: 'rgba(238,34,34)'
       }
 
-      var ctx_live = document.getElementById("mycanvas");
+      var ctx_live = document.getElementById("canvas");
       var myChart = new Chart(ctx_live, {
           type: 'bar',
           data: {
@@ -189,7 +194,7 @@
       };
   
 
-      getData();
+      
 
   </script>
 </body>
@@ -206,57 +211,44 @@
     //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall2';
     const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
     //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall4';
-
     // If reach the data successfully, then  parse and save the data in variable auf2
     async function getDaten() {
       const response = await fetch(url);
-
       // Save data in variable auf2	
       var auf2 = await response.json();
-
       // Test to print out the data on Website´s console
       console.log(auf2);
-
       // Create an array of Datum
       var labels = auf2.map(function (e) {
         return e.datum;
       });
       // A test to see if all element were saved in array. Doesn ´t affect anything
       //console.log(labels);
-
       // Create and array of Temperatur     
       var temps = auf2.map(function (e) {
         return e.werte.Tavg_temp;
       });
-
       // PROBLEM : the given Data were in the datatype float with the comma  => Must turn into float with dot (Example : Turn 29,9 into 29.9) 
-
       // Replace the comma with dot
       let newVals1 = temps.map(dots => dots.toString().replace(',', '.'));
-
       // Test again =)))
       //console.log(newVals1);
-
       // temperature tolerance of limit - NEW
       var temp_tolerance = auf2.map(function (e) {
         return 75;
       });
-
       // temperature damage limit - NEW
       var temp_damage = auf2.map(function (e) {
         return 150;
       });
-
       // BackgroundColor Array
       var backgroundColor = new Array;
-
       // Variables colors 
       var chartColors = {
         color1: 'rgba(65,105,225,0.4)', // Default color blue
         color2: 'rgb(34,139,34)', // Color green
         color3: '#800000' // Color red
       };
-
       var chartObject = document.getElementById('canvas');
       var chart1 = new Chart(chartObject, {
         type: 'bar', // Art des Diagramms z.B. 'line', 'bar', etc.        
@@ -298,7 +290,6 @@
           title: {
             display: true,
             text: 'Temperaturverlauf der Wellenkupplung',
-
           },
           scales: {
             yAxes: [{
@@ -317,7 +308,6 @@
         // normal Temp
         if (dataset.data[i] < 75) {
           dataset.backgroundColor[i] = chartColors.color1;
-
         }
         // If the Temp reach Toleranzgrenze
         if ((dataset.data[i] >= 75) && (dataset.data[i] < 150)) {
@@ -326,7 +316,6 @@
         // If the Temp reach Schadenszgrenze
         if (dataset.data[i] >= 150) {
           dataset.backgroundColor[i] = chartColors.color3;
-
         }
       }
       chart1.update();
