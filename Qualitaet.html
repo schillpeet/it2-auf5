@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Qualität</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
     <style>
@@ -18,7 +19,7 @@
             <!-- changed the name of actionbar -->
             <a href="ConditionMonitoring.html"> <img src="arrow.png" alt="pfeil"
                     style="width:50px;height:30px;vertical-align :middle; "></a>
-            <p>Home / Condition Monotoring / Qualität</p>
+            <p>Home / Condition Monitoring / Qualität</p>
 
         </div>
     </div>
@@ -40,69 +41,113 @@
         <canvas id="canvas"></canvas>
     </div>
 </head>
-
-<body>
+<body translate="no">
     <script>
-        // variable, which saves link to the website
-        //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
-        //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall2';
-        const url = 'http://it2wi1.if-lab.de/rest/mpr_fall3';
-        //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall4';
-
-        async function getDaten4() {
-
-            const response = await fetch(url);
-            var auf2 = await response.json();
-
-            // Create an array of Datum
-            var labels = auf2.map(function (e) {
-                return e.datum;
-            });
-
-            var vibration = auf2.map(function (e) {
-                return e.werte.Qualitaetsgrenze;
-            });
-
-        
-
-            let newVals3 = vibration.map(dots => dots.toString().replace(',', '.'))
-
-
-        
-
-            var chartObject = document.getElementById('canvas');
-            var chart3 = new Chart(chartObject, {
-                type: 'bar',
-                data: {
-                    labels: labels,  // Date Array 
-                    datasets: [{
-                        label: "Qualitätgrenze",
-                        backgroundColor: 'rgba(65,105,225,0.4)', // I changed this to an array for the changeColor function below
-                        borderColor: 'rgba(65,105,255,1)',
-                        data: newVals3  // Vibration Array
-                    },  ]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Qualitätsgrenze ',
-
-                    },
-                    scales: {
-                        yAxes: [{
-                            scaleLabel: {
-                                //ticks: {beginAtZero: true},
-                                display: true,
-                                labelString: '???'
-                            }
-                        }]
-                    }
-                }
-            });
-
+        // Variables colors
+        var backgroundColor = new Array; // new
+        var chartColorsBackground = { // NEW
+            color1: 'rgba(65,105,225,0.4)', // Default color blue
+            color2: 'rgb(34,139,34)', // Color green
+            //color3: '#800000' // Color red
+            color3:'rgba(238,64,0)' // changed the color, but it's still red
+        };
+  
+        var borderColor = new Array;
+        var chartColorsBorder = {
+            color11: 'rgba(65,105,225,1)', // Default color blue,- I change the last value from 0.4 to 1.0 it marks it stronger!
+            color22: 'rgb(34,139,34)', // Color green
+            //color33: '#800000' // Color red
+            color33: 'rgba(238,34,34)'
         }
-        getDaten4();
-    </script>
-</body>
+  
+        var ctx_live_rpm = document.getElementById("canvas");
+        var myChart_quality = new Chart(ctx_live_rpm, {
+            type: 'bar',
+            data: {
+                labels: [], // X-Axes: maybe we can use here the date in a 10 sec interval?
+                datasets: [{
+                    label: 'Qualität', // NEW
+                    data: [],
+                    borderWidth: 1,
+                    borderColor: borderColor, // NEW
+                    backgroundColor: backgroundColor, // NEW
+                    
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: "Qualitätsbetrachtung",
+                },
+                legend: {
+                    //display: false // if use falsse, we can't see our legends! I would prefer to see legends!
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Qualitätswerte'
+                        }
+                    }],
+                    // NEW LINES
+                    xAxes: [{
+                      ticks: {
+                        maxTicksLimit: 12   // this will show max 12 (timestamp)-values on the x-axis,- it looks better!
+                      }
+                    }]
+  
+                }
+            }
+        });
+        // Function get Data
+        var getDataQuality = function () {
+            $.ajax({
+                // Get Data from URL and save in variable data
+                url: 'http://it2wi1.if-lab.de/rest/mpr_fall3' ,
+                success: function (data) {
+                    // Get the quality array
+                    var quality = data.map(function (e) {
+                        return e.werte.Qualitaetsgrenze;
+                    });
+                    
+                    // select the current date
+                    var date_actual = data.map(function (e) {
+                      return e.datum;
+                    });
+  
+                    // Replace dot with comma
+                    let Quali = quality.map(dots => dots.toString().replace(',', '.'))
+                    // For loop to seperate each element in an array. The time between 2 elements is 2 seconds
+                    for (let i = 0; i < data.length; i++) {
+                        setTimeout(() => {
+                            
+                            myChart_quality.data.labels.push(date_actual[i]); // x-axis, current date
+  
+                            //myChart.data.labels.push(i); // x-axis
+                            myChart_quality.data.datasets[0].data.push(Quali[i]); // the actual quality
+                            myChart_quality.data.labels.shift;
+                            myChart_quality.update();
 
-</html>
+                            myChart_quality.data.datasets[0].backgroundColor = chartColorsBackground.color1;
+                            myChart_quality.data.datasets[0].borderColor = chartColorsBorder.color11;
+                            
+                        }, i * 100); // standard = 2000; take 100 for fast presentation
+                      
+                    }
+                   
+                }
+  
+            });
+        };
+    
+  
+        getDataQuality();
+  
+    </script>
+  </body>
+  
+  </html>
