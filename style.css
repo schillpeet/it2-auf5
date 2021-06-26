@@ -220,6 +220,13 @@ a.escalation-button:hover{
     background-color :  #405569;
 }
 
+/* Button for Realtime Charts */ 
+.TempButton{
+    position: relative;
+    left:50%;
+    right:50%;
+    top: 20%;
+}
 /* Drop down menu ´s design */ 
 .dropDown {
     background-color: #04AA6D;
