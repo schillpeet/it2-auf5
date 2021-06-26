@@ -114,6 +114,29 @@ a.escalation-button:hover{
 .cMonitoring-button:hover{
     background-color :  #405569;
 }
+/* Support ticket button */
+.Support2{
+  background-color : #314151;
+  padding: 20px;
+  width : 200px;
+  border-radius: 10px;
+  border:solid 0.5px #b8babc;
+  box-shadow: 1px 1px 1px 1px #666;
+  cursor: pointer;
+  text-align: center;	
+  color : white;
+  position:absolute;
+  font-size : 16px;
+  top:50%;
+  left:5%;
+  margin-top: -50px;
+  margin-right: -100px;
+
+}
+.Support2:hover{
+  background-color :  #405569;
+}
+
 
 /* HERE STARTS: Condition Monitoring */
 
@@ -219,7 +242,6 @@ a.escalation-button:hover{
 .Historie:hover {
     background-color :  #405569;
 }
-
 /* Button for Realtime Charts */ 
 .TempButton{
     position: relative;
@@ -227,6 +249,7 @@ a.escalation-button:hover{
     right:50%;
     top: 20%;
 }
+
 /* Drop down menu ´s design */ 
 .dropDown {
     background-color: #04AA6D;
@@ -313,4 +336,3 @@ input[type=text], select, textarea {
     margin-left: -250px;
  
   }
-  
