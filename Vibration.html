@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <title>Vibration</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
     <style>
@@ -14,11 +16,9 @@
     </style>
     <div id="top">
         <div id="actionbar">
-
-            <!-- changed the name of actionbar -->
             <a href="ConditionMonitoring.html"> <img src="arrow.png" alt="pfeil"
                     style="width:50px;height:30px;vertical-align :middle; "></a>
-            <p>Home / Condition Monotoring / Vibration</p>
+            <p>Home / Condition Monitoring / Vibration</p>
 
         </div>
     </div>
@@ -31,18 +31,164 @@
             <a href="history.html">Temperatur</a>
             <a href="Akustik.html">Akustik</a>
             <a href="#">Vibration</a>
-            <a href="Qualitaet.html">Qualität</a>
+            <a href="Qualitaetm.html">Qualität</a>
             <a href="Rpm.html">Rpm</a>
         </div>
     </div>
 
     <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" style="background-color: aliceblue;"></canvas>
     </div>
 </head>
 
-<body>
+<body translate="no">
     <script>
+        // Variables colors
+        var backgroundColor = new Array; // new
+        var chartColorsBackground = { // NEW
+            color1: 'rgba(65,105,225,0.4)', // Default color blue
+            color2: 'rgb(34,139,34)', // Color green
+            //color3: '#800000' // Color red
+            color3:'rgba(238,64,0)' // changed the color, but it's still red
+        };
+  
+        var borderColor = new Array;
+        var chartColorsBorder = {
+            color11: 'rgba(65,105,225,1)', // Default color blue,- I change the last value from 0.4 to 1.0 it marks it stronger!
+            color22: 'rgb(34,139,34)', // Color green
+            //color33: '#800000' // Color red
+            color33: 'rgba(238,34,34)'
+        }
+  
+        var ctx_live_vibr = document.getElementById("canvas");
+        var myChart_Vibr = new Chart(ctx_live_vibr, {
+            type: 'bar',
+            data: {
+                labels: [], // X-Axes: maybe we can use here the date in a 10 sec interval?
+                datasets: [{
+                    label: 'Vibration', // NEW
+                    data: [],
+                    borderWidth: 1,
+                    borderColor: borderColor, // NEW
+                    backgroundColor: backgroundColor, // NEW
+                    
+                }, {
+                    // new l.47-63
+                    label: "Toleranzgrenze: 0,15 m/s²",
+                    type: 'line',
+                    backgroundColor: 'rgb(50,205,50)', // LimeGreen
+                    borderColor: 'rgb(34,139,34)', // ForestGreen
+                    data: [],
+                    fill: false,
+                    pointRadius: 0, // this value disable the point drawing
+                    borderWidth: 3,
+                },{
+                    label: "Schadensgrenze: 0,4 m/s²",
+                    type: 'line',
+                    backgroundColor: 'rgba(238,64,0)',   // OrgangeRed2
+                    borderColor: 'rgba(178,34,34)',   // firebrick
+                    data: [],
+                    fill: false,
+                    pointRadius: 0,
+                    borderWidth: 3,
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: "Mechanische Schwingung der Welle",
+                },
+                legend: {
+                    //display: false // if use falsse, we can't see our legends! I would prefer to see legends!
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Vibration in m/s²'
+                        }
+                    }],
+                    // NEW LINES
+                    xAxes: [{
+                      ticks: {
+                        maxTicksLimit: 12   // this will show max 12 (timestamp)-values on the x-axis,- it looks better!
+                      }
+                    }]
+  
+                }
+            }
+        });
+        // Function get Data
+        var getDataVibr = function () {
+            $.ajax({
+                // Get Data from URL and save in variable data
+                url: 'http://it2wi1.if-lab.de/rest/mpr_fall3' ,
+                success: function (data) {
+                    // Get the vibration array
+                    var Vibration = data.map(function (e) {
+                        return e.werte.Tavg_vibr;
+                    });
+                    // variable of vibration tolerance - NEW
+                    var vibr_tolerance = 0.15;
+                    // variable of vibration damage zone - NEW
+                    var vibr_damage = 0.4;
+                    // select the current date
+                    var date_actual = data.map(function (e) {
+                      return e.datum;
+                    });
+  
+                    // Replace dot with comma
+                    let Vibr = Vibration.map(dots => dots.toString().replace(',', '.'))
+                    // For loop to seperate each element in an array. The time between 2 elements is 2 seconds
+                    for (let i = 0; i < data.length; i++) {
+                        setTimeout(() => {
+                            
+                            myChart_Vibr.data.labels.push(date_actual[i]); // x-axis, current date
+  
+                            //myChart.data.labels.push(i); // x-axis
+                            myChart_Vibr.data.datasets[0].data.push(Vibr[i]); // the actual vibration
+                            myChart_Vibr.data.datasets[1].data.push(vibr_tolerance); // the actuel vibr_tolerance line - NEW
+                            myChart_Vibr.data.datasets[2].data.push(vibr_damage); // the actuel vibr_damage line - NEW
+                            myChart_Vibr.data.labels.shift;
+                            myChart_Vibr.update();
+                            // change the color if the values of vibrations over the tolerance border or over the damage border
+                            if(Vibr[i] < 0.15){
+                                myChart_Vibr.data.datasets[0].backgroundColor = chartColorsBackground.color1;
+                                myChart_Vibr.data.datasets[0].borderColor = chartColorsBorder.color11;
+                                
+                            } 
+                            if((Vibr[i] >= 0.15) && (Vibr[i] < 0.4)){
+                                myChart_Vibr.data.datasets[0].backgroundColor = chartColorsBackground.color2;
+                                myChart_Vibr.data.datasets[0].borderColor = chartColorsBorder.color22;
+  
+                            } 
+                            if(Vibr[i] >= 0.4){
+                                myChart_Vibr.data.datasets[0].backgroundColor = chartColorsBackground.color3;
+                                myChart_Vibr.data.datasets[0].borderColor = chartColorsBorder.color33;
+  
+                            }
+                        }, i * 100); // standard = 2000; take 100 for fast presentation
+                      
+                    }
+                   
+                }
+  
+            });
+        };
+    
+  
+        getDataVibr();
+  
+    </script>
+  </body>
+  
+  </html>
+    <!--<script>
+        /*
         // variable, which saves link to the website
         //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall1';
         //const url = 'http://it2wi1.if-lab.de/rest/mpr_fall2';
@@ -137,12 +283,12 @@
             var dataset = chart3.data.datasets[0];
             for (var i = 0; i < dataset.data.length; i++) {
                 // normal vibration
-                if (dataset.data[i] <= 0.15) {
+                if (dataset.data[i] < 0.15) {
                     dataset.backgroundColor[i] = chartColors.color1;
 
                 }
                 // If the vibration reach Toleranzgrenze
-                if ((dataset.data[i] >= 0.15) && (dataset.data[i] <= 0.4)) {
+                if ((dataset.data[i] >= 0.15) && (dataset.data[i] < 0.4)) {
                     dataset.backgroundColor[i] = chartColors.color2;
                 }
                 // If the vibration reach Schadenszgrenze
@@ -155,8 +301,8 @@
 
 
         }
-        getDaten3();
+        getDaten3();*/
     </script>
 </body>
 
-</html>
+</html>-->
