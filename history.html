@@ -33,6 +33,7 @@
       <a href="Rpm.html">Rpm</a>
     </div>
   </div>
+  
 
   <!-- Container to resize the chart -->
   <!--<div class="chart-container" style="position: relative;height:40vh; width:80vw">
@@ -45,6 +46,10 @@
 
 </head>
 <body translate="no">
+
+<!-- The text appears when data are over the limit -->
+  <div class = "demo">
+  <p id="demo" ></p></div>
 
   <!-- Create button to run the whole function -->
   <div class="TempButton ">
@@ -173,15 +178,20 @@
                               myChart.data.datasets[0].backgroundColor = chartColorsBackground.color1;
                               myChart.data.datasets[0].borderColor = chartColorsBorder.color11;
                               
+                              
                           } 
+                          // The text appears when data are over the limit 
                           if((Temp[i] >= 75) && (Temp[i] < 150)){
                               myChart.data.datasets[0].backgroundColor = chartColorsBackground.color2;
                               myChart.data.datasets[0].borderColor = chartColorsBorder.color22;
+                              document.getElementById("demo").innerHTML = "Toleranzgrenze wurde überschritten. Gehen Sie auf Fehlerbehandlung, um das Problem zu beheben  ";
 
                           } 
+                           // The text appears when data are over the limit 
                           if(Temp[i] >= 150){
                               myChart.data.datasets[0].backgroundColor = chartColorsBackground.color3;
                               myChart.data.datasets[0].borderColor = chartColorsBorder.color33;
+                              document.getElementById("demo").innerHTML = "Schadensgrenze wurde überschritten. Gehen Sie auf Fehlerbehandlung, um das Problem zu beheben";
 
                           }
                       }, i * 100); // standard = 2000; take 100 for fast presentation
