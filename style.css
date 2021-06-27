@@ -410,3 +410,14 @@ input[type=text], select, textarea {
     margin-left: -250px;
  
   }
+  /* The text appears when the data ist over limit */
+  .demo{
+    background-color:white ;
+    width: 800px;
+    position: fixed;
+    
+    left: 50%;
+    margin-top: 80px;
+    margin-left: -250px;
+ 
+  }
