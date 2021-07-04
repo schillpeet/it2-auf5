@@ -72,7 +72,7 @@
     <br />
 
      <!-- submit button -->
-    <div style="padding-bottom: 18px; margin-left: 270px;"><input name="skip_Submit" value="Submit" type="submit" /></div>
+    <div style="padding-bottom: 18px; margin-left: 270px;"><input name="skip_Submit" value="Submit" type="submit" onclick="return confirm('Thanks for getting in touch. We´ll be in contact soon')" /></div>
 
     </form>
     </div>
@@ -88,6 +88,7 @@
             }
             return true;
         }
+
         function isEmpty(str) { return (str.length === 0 || !str.trim()); }
         function validateEmail(email) {
             var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
